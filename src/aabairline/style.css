@@ -1,0 +1,255 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 3, 2019, 5:09:49 PM
+    Author     : anguy
+*/
+.ComboBox .list-view .list-cell{
+    -fx-font-size: 16px;
+    -fx-text-fill: darkblue;
+}
+.ComboBox .list-view .list-cell:hover{
+    -fx-font-size: 25px;
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%,darkgreen, yellowgreen);
+    -fx-text-fill: yellow;
+}
+.ComboBox .cell:selected {
+    -fx-text-fill: darkblue;
+    -fx-font-weight: bold;
+}
+.DatePicker{
+    -fx-font-weight: bold;
+}
+.DatePicker .calendar-grid{
+    -fx-font-size: 18px;
+    -fx-pref-width: 600;
+    -fx-pref-height: 200;
+}
+.DatePicker .cell:hover{
+   -fx-background-color: linear-gradient(from 25% 25% to 100% 100%,darkgreen, yellowgreen); 
+}
+.BackgroundImage{
+    -fx-background-image: url("images/background.jpg")
+}
+.BackgroundColor{
+   -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #00d4ff, #080849);
+}
+.TitleFill{
+    -fx-fill: darkblue;
+}
+.CenterTitle{
+    -fx-alignment: center;
+    -fx-font-family: Calibri;
+    -fx-font-size: 16;
+}
+
+/*FXMLHome Style*/
+.HBoxHome{
+    -fx-alignment: center;
+    -fx-font-size: 25;
+    -fx-font-family: Calibri;
+    -fx-padding: 2px;
+}
+
+/*FXMLLogin Style*/
+.HboxBtn{
+    -fx-alignment: CENTER_RIGHT;
+    -fx-spacing: 30px;
+}
+.LoginTile{
+    -fx-font: italic bold 30px/30px Calibri;
+}
+/**/
+
+/*FXMLBooking Style*/
+.BookingPrice{
+    -fx-font: bold 35px/35px Calibri;
+    -fx-text-fill: darkblue;
+}
+.BookingPriceBox{
+    -fx-alignment: CENTER_RIGHT;
+    -fx-background-color: white;
+    -fx-spacing: 10px;
+}
+
+/*FXML Search Tab Style*/
+.BookingPattern{
+    -fx-padding:5px;
+    -fx-font-size: 14;
+}
+.BookingCustom{
+    -fx-alignment: bottom-left;
+    -fx-spacing : 10px;
+}
+.BookingBtn{
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-background-color: aquamarine;
+}
+.HboxNextBtn{
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 0 10px 0 0;
+}
+.BookingBtnColorChange{
+    -fx-font-weight: bold;
+    -fx-background-color: darkblue;
+    -fx-text-fill: yellow;
+}
+.TitleBackground{
+    -fx-text-fill: darkblue;
+    -fx-background-color: lightblue;
+    -fx-padding: 0 5px 0 5px;
+}
+.YearTab{
+    -fx-font-weight: bold;
+}
+/**/
+
+/*Passenger Tab*/
+.PassengerCustom{
+   -fx-padding: 5px 0 0 10px;
+   -fx-spacing: 10px;
+   -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0505b7, #080849);
+}
+.PassengerBoxesFiled{
+    -fx-padding: 10px;
+}
+.PassengerTitle{
+    -fx-font: italic bold 23px/23px Calibri;
+    -fx-fill: white;
+}
+.PassengerVboxLabel{
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 5px;
+}
+.PassengerListView{
+    -fx-background-color: transparent;
+}
+/**/
+/*Extras Style*/
+
+* > .box{
+     -fx-padding: 2px;
+     -fx-border-color: darkblue;
+}
+* > .box > .mark{
+     -fx-padding: 13px;
+}
+.ExtrasGrdBox{
+    -fx-padding: 0 0 0 10px;
+}
+.ExtrasGrdBoxOnChecked{
+    -fx-background-color: whitesmoke;
+}
+.ExtrasGrdBox > .listView{
+    -fx-background-color: transparent;
+}
+.ExtrasCheckbox{
+    -fx-background-color: whitesmoke;
+    -fx-alignment: center;
+}
+.ExtrasLuggSelection{
+    -fx-background-color: whitesmoke;
+}
+.ExtrasLuggSelection > .PicBox{
+    -fx-alignment: BOTTOM_CENTER;
+}
+.ExtrasLuggSelection > .Selectbox{
+    -fx-alignment: center;
+}
+
+.ExtrasLuggSelection > .SelectboxOnChecked{
+     -fx-background-color: yellowgreen;
+}
+.ExtrasLuggSelection > .Selectbox > * > .box{
+    -fx-border-radius: 30px;
+    -fx-background-color: transparent; 
+}
+.ExtrasGridBoxSelection{
+    -fx-background-color: white;
+    -fx-alignment: CENTER;
+}
+.ExtrasGridBoxSelection > *{
+    -fx-alignment: center;
+    -fx-font-family: Calibri;
+    -fx-font: bold 20px/20px Calibri;
+}
+/**/
+/*Payment Style*/
+.PaymentCustom{
+    -fx-font: bold 18px/18px Calibri;
+    -fx-background-color: white;
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+.PaymentMethod{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, lightblue, blue);
+}
+.PaymentMethod > *{
+    -fx-font: bold 23px/23px Calibri; 
+    -fx-padding: 0 0 0 5px;
+}
+.PaymentMethodButton{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, aquamarine, #67e36f);
+    -fx-font: bold 23px/23px Calibri;
+}
+.PaymentLabel{
+    -fx-border-color: green;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-text-fill: gray;
+}
+.PaymentMethod > .Note{
+    -fx-font: italic 20px/20px Calibri;
+    -fx-alignment: CENTER;
+}
+.PaymentMethod > .Note > *{
+    -fx-fill: yellow;
+}
+.PaymentMethod > .Change{
+    -fx-border-color: darkgreen;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 0 0 0;
+}
+.PaymentMethodDisable{
+    -fx-background-color: lightgray;
+}
+.PaymentMethodOnClick{
+    -fx-background-color: lightblue;
+}
+.PaymentMethodOnClick > *{
+    -fx-border-color: lightblue;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-text-fill: darkblue;
+}
+.PaymentMethodOnClick > .PaymentLabel{
+    -fx-text-fill: lightblue;
+}
+.PaymentTitle1{
+    -fx-text-fill: darkblue;
+}
+.PaymentTitle2{
+    -fx-text-fill: gray;
+}
+.PaymentTime{
+    -fx-alignment: CENTER;
+    -fx-spacing: 9.5px;
+}
+.PaymentTime  > *{
+    -fx-font: bold 23px/23px Calibri;
+    -fx-padding: 0 0 0 5px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: darkblue;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+}
+.PaymentTimeOnChecked{
+    -fx-background-color: whitesmoke;
+    -fx-border-width: 0px;
+}
+/**/
+/**/
