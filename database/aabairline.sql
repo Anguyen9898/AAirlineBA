@@ -36,7 +36,7 @@ CREATE TABLE `airport_info` (
 
 LOCK TABLES `airport_info` WRITE;
 /*!40000 ALTER TABLE `airport_info` DISABLE KEYS */;
-INSERT INTO `airport_info` VALUES ('VVBM/BMV','Buôn Ma Thuột','Đắk Lắk'),('VVCA/VCL','Chu Lai','Quảng Nam'),('VVCI/HPH','Cát Bi','Hải Phòng'),('VVCM/CAH','Cà Mau','Cà Mau'),('VVCR/CXR','Cam Ranh','Khánh Hòa'),('VVCS/VCS','Côn Đảo	','Bà Rịa'),('VVCT/VCA','Cần Thơ','Cần Thơ'),('VVDB/DIN','Điện Biên Phủ','Điện Biên'),('VVDH/VDH','Đồng Hới','Quảng Bình'),('VVDL/DLI','Liên Khương','Lâm Đồng'),('VVDN/DAD','Đà Nẵng','Đà Nẵng'),('VVNB/HAN','Nội Bài','Hà Nội'),('VVPB/HUI','Phú Bài','Thừa Thiên'),('VVPC/UIH','Phù Cát','Bình Định'),('VVPK/PXU','Pleiku','Gia Lai'),('VVPQ/PQC','Phú Quốc','Kiên Giang'),('VVRG/VKG','Rạch Giá','Kiên Giang'),('VVTH/TBB','Tuy Hòa','Phú Yên'),('VVTS/SGN','Tân Sơn Nhất','Tp HCM'),('VVTX/THD','Thọ Xuân','Thanh Hóa'),('VVVD/VDO','Vân Đồn','Quảng Ninh'),('VVVH/VII','Vinh','Nghệ An');
+INSERT INTO `airport_info` VALUES ('BMV','Buôn Ma Thuột','Đắk Lắk'),('CXR','Cam Ranh','Khánh Hòa'),('DAD','Đà Nẵng','Đà Nẵng'),('DLI','Liên Khương','Lâm Đồng'),('HAN','Nội Bài','Hà Nội'),('HPH','Cát Bi','Hải Phòng'),('HUI','Phú Bài','Thừa Thiên'),('ICN','Seoul','Hàn Quốc'),('PQC','Phú Quốc','Kiên Giang'),('PXU','Pleiku','Gia Lai'),('SGN','Tân Sơn Nhất','Tp HCM'),('THD','Thọ Xuân','Thanh Hóa'),('TPE','Đài Bắc','Đài Loan'),('UIH','Phù Cát','Bình Định'),('VCA','Cần Thơ','Cần Thơ'),('VCL','Chu Lai','Quảng Nam'),('VDH','Đồng Hới','Quảng Bình'),('VDO','Vân Đồn','Quảng Ninh'),('VII','Vinh','Nghệ An');
 /*!40000 ALTER TABLE `airport_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,10 +49,13 @@ DROP TABLE IF EXISTS `customer`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
   `C_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `C_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `C_IDNNUMBER` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `C_PHONE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `C_DAYOFBIRTH` date DEFAULT NULL,
+  `C_ADDRESS` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_COUNTRY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `C_NATIONALITY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`C_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,7 +66,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('cus001','Nguyễn Thị Thanh','568856287','0735548311','1981-05-23'),('cus002','Trần Quang An','643125784','0504260246','1998-01-26'),('cus003','Nguyễn Văn Bình','355246251','0513820256','1995-09-06'),('cus004','Lê Phan Anh','731433461','0701511400','1992-09-24'),('cus005','Trần Nhật An','511635405','0774745361','1990-01-17'),('cus006','Đỗ Văn Mỹ','811617362','0347170574','1986-01-14'),('cus007','Trần Nhật Dương','184312144','0760537260','1966-04-19'),('cus008','Lê Nhật Anh','542173106','0357266856','1969-08-16'),('cus009','Trần Văn Bảo','638811861','0356744721','1971-02-15'),('cus010','Đỗ Phan Dương','402206137','4022061374','1992-10-24');
+INSERT INTO `customer` VALUES ('cus001','Nguyễn Thị Thanh','568856287','0735548311','1981-05-23',NULL,'',''),('cus002','Trần Quang An','643125784','0504260246','1998-01-26',NULL,'',''),('cus003','Nguyễn Văn Bình','355246251','0513820256','1995-09-06',NULL,'',''),('cus004','Lê Phan Anh','731433461','0701511400','1992-09-24',NULL,'',''),('cus005','Trần Nhật An','511635405','0774745361','1990-01-17',NULL,'',''),('cus006','Đỗ Văn Mỹ','811617362','0347170574','1986-01-14',NULL,'',''),('cus007','Trần Nhật Dương','184312144','0760537260','1966-04-19',NULL,'',''),('cus008','Lê Nhật Anh','542173106','0357266856','1969-08-16',NULL,'',''),('cus009','Trần Văn Bảo','638811861','0356744721','1971-02-15',NULL,'',''),('cus010','Đỗ Phan Dương','402206137','4022061374','1992-10-24',NULL,'','');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,10 +140,10 @@ CREATE TABLE `flight_info` (
   `F_ARRIVALTIME` time DEFAULT NULL,
   `F_ARRIVALPLACE` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`F_ID`,`F_TAKEOFFDATE`),
-  KEY `FK_FInfoToAirport_idx` (`F_TAKEOFFPLACE`),
-  KEY `FK_FInfoToAirport1_idx` (`F_ARRIVALPLACE`),
-  CONSTRAINT `FK_FInfoToAirport` FOREIGN KEY (`F_TAKEOFFPLACE`) REFERENCES `airport_info` (`A_ID`),
-  CONSTRAINT `FK_FInfoToAirport1` FOREIGN KEY (`F_ARRIVALPLACE`) REFERENCES `airport_info` (`A_ID`)
+  KEY `FK_FInfoToRoute_idx` (`F_TAKEOFFPLACE`),
+  KEY `FK_FInfoToRoute1_idx` (`F_ARRIVALPLACE`),
+  CONSTRAINT `FK_FInfoToRoute` FOREIGN KEY (`F_TAKEOFFPLACE`) REFERENCES `route` (`TakeOff_ID`),
+  CONSTRAINT `FK_FInfoToRoute1` FOREIGN KEY (`F_ARRIVALPLACE`) REFERENCES `route` (`Arrival_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,6 +206,33 @@ LOCK TABLES `plane` WRITE;
 /*!40000 ALTER TABLE `plane` DISABLE KEYS */;
 INSERT INTO `plane` VALUES ('VN-A001',100,100),('VN-A002',100,100),('VN-A003',100,100),('VN-A004',100,100),('VN-A005',150,150),('VN-A006',150,150),('VN-A007',150,150),('VN-A008',180,180),('VN-A009',180,180),('VN-A010',180,180);
 /*!40000 ALTER TABLE `plane` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `route`
+--
+
+DROP TABLE IF EXISTS `route`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `route` (
+  `Arrival_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `TakeOff_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`Arrival_ID`,`TakeOff_ID`),
+  KEY `FK_RouteToAirport1_idx` (`TakeOff_ID`),
+  CONSTRAINT `FK_RouteToAirport` FOREIGN KEY (`Arrival_ID`) REFERENCES `airport_info` (`A_ID`),
+  CONSTRAINT `FK_RouteToAirport1` FOREIGN KEY (`TakeOff_ID`) REFERENCES `airport_info` (`A_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `route`
+--
+
+LOCK TABLES `route` WRITE;
+/*!40000 ALTER TABLE `route` DISABLE KEYS */;
+INSERT INTO `route` VALUES ('DAD','BMV'),('HAN','BMV'),('HPH','BMV'),('VII','BMV'),('HPH','CXR'),('ICN','CXR'),('BMV','DAD'),('DLI','DAD'),('HPH','DAD'),('ICN','DAD'),('PXU','DAD'),('SGN','DAD'),('TPE','DAD'),('DAD','DLI'),('HAN','DLI'),('BMV','HAN'),('CXR','HAN'),('DAD','HAN'),('DLI','HAN'),('HUI','HAN'),('PQC','HAN'),('PXU','HAN'),('SGN','HAN'),('TPE','HAN'),('UIH','HAN'),('VCA','HAN'),('VCL','HAN'),('VDH','HAN'),('VII','HAN'),('BMV','HPH'),('CXR','HPH'),('SGN','HPH'),('UIH','HPH'),('CXR','ICN'),('HPH','SGN'),('HUI','SGN'),('THD','SGN'),('UIH','SGN'),('VDH','SGN'),('VDO','SGN'),('VII','SGN'),('DAD','TPE'),('HAN','VCA'),('HAN','VCL'),('SGN','VDH'),('BMV','VII');
+/*!40000 ALTER TABLE `route` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -276,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-23 17:35:36
+-- Dump completed on 2019-12-26 19:58:30

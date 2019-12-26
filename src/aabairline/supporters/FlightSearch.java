@@ -6,6 +6,7 @@
 package aabairline.supporters;
 
 import aabairline.Utils;
+import aabairline.pojo.AirportInfo;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
@@ -17,10 +18,10 @@ import javafx.scene.layout.Pane;
 import aabairline.supporters.SupporterImp.*;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 
 /**
  *
@@ -32,33 +33,34 @@ public class FlightSearch{
     private static Button btnRTrip;
     private static GridPane returnDateTxtField;
     
-    private static ComboBox<String> departure;
-    private static ComboBox<String> destination;
+    private static ComboBox<AirportInfo> cbDepart;
+    private static ComboBox<AirportInfo> cbDes;
     
     private static DatePicker depDate;
     private static DatePicker reDate;
     
-    private static TextField txtAdult;
-    private static TextField txtChild;
-    private static TextField txtInfant;
+    private static ComboBox<Integer> cbAdult;
+    private static ComboBox<Integer> cbChild;
+    private static ComboBox<Integer> cbInfant;
     
     private static Tab yearTab;
+    private static final Integer[] arrAges = {0, 1, 2, 3, 4, 5};
     
     public FlightSearch(Button btnOWay, Button btnRTrip, GridPane returnDateTxtField
-            , ComboBox<String> departure,  ComboBox<String> destination
-            , DatePicker depDate, DatePicker reDate, TextField txtAdult
-            , TextField txtChild, TextField txtInfant, TabPane scheduleTab, Tab year) {
+            , ComboBox<AirportInfo> departure,  ComboBox<AirportInfo> destination
+            , DatePicker depDate, DatePicker reDate, ComboBox<Integer> txtAdult
+            , ComboBox<Integer> txtChild, ComboBox<Integer> txtInfant, TabPane scheduleTab, Tab year) {
         
         FlightSearch.btnOWay = btnOWay;
         FlightSearch.btnRTrip = btnRTrip;
         FlightSearch.returnDateTxtField = returnDateTxtField;
-        FlightSearch.departure = departure;
-        FlightSearch.destination = destination;
+        FlightSearch.cbDepart = departure;
+        FlightSearch.cbDes = destination;
         FlightSearch.depDate = depDate;
         FlightSearch.reDate = reDate;
-        FlightSearch.txtAdult = txtAdult;
-        FlightSearch.txtChild = txtChild;
-        FlightSearch.txtInfant = txtInfant;
+        FlightSearch.cbAdult = txtAdult;
+        FlightSearch.cbChild = txtChild;
+        FlightSearch.cbInfant = txtInfant;
         FlightSearch.scheduleTab = scheduleTab;
         FlightSearch.yearTab = year;
         //Excute
@@ -73,25 +75,26 @@ public class FlightSearch{
         
         //FlightBooking Tab
         btnOWay.setOnMouseClicked(e->{
-            ButtonBookingnEffect(btnOWay, btnRTrip, returnDateTxtField
+            bookingBtnEffect(btnOWay, btnRTrip, returnDateTxtField
                     , false, "BookingBtnColorChange");
         });
       
         btnRTrip.setOnMouseClicked(e->{
-            ButtonBookingnEffect(btnRTrip, btnOWay
+            bookingBtnEffect(btnRTrip, btnOWay
                     ,returnDateTxtField, true, "BookingBtnColorChange");
         });
-        
-        FlightSearch.loadDepartureCBox();
-        FlightSearch.loadDestinationCBox();
+        FlightSearch.loadComboBox();
+//        FlightSearch.loadDestinationCBox();
         FlightSearch.setUpDatePicker();
-
-//        FlightSearch.datePickerHandler(depDate);
-//        FlightSearch.datePickerHandler(reDate);
-
-        TextSupporter.txtSelectAll(txtAdult);
-        TextSupporter.txtSelectAll(txtChild);
-        TextSupporter.txtSelectAll(txtInfant);
+        //Setup combobox adult age
+        cbAdult.getItems().addAll(arrAges);
+        cbAdult.getSelectionModel().select(1);
+        //Setup combobox child age
+        cbChild.getItems().addAll(arrAges);
+        cbChild.getSelectionModel().select(0);
+        //Setup combobox infant age
+        cbInfant.getItems().addAll(arrAges);
+        cbInfant.getSelectionModel().select(0);
     }
       
     /**
@@ -102,35 +105,70 @@ public class FlightSearch{
      * @param isFieldShown 
      * @param cssStyle 
      */
-    private static void ButtonBookingnEffect(Node btn1, Node btn2, Pane shownPane,
+    private static void bookingBtnEffect(Node btn1, Node btn2, Pane shownPane,
             Boolean isFieldShown, String cssStyle){
         btn1.getStyleClass().add(cssStyle);
         btn2.getStyleClass().removeAll(cssStyle);
         shownPane.setVisible(isFieldShown);
     }
     
-     private static void loadDepartureCBox(){
-        departure.getItems().addAll(loadAirportInfo());
+    /**
+     * Method check all fields is empty
+     * @return 
+     */
+    private static boolean isAllEmpty(){
+        return cbDepart.getPromptText().equals("Select Departure" )
+                && cbDes.getPromptText().equals("Select Destination")
+                && cbAdult.getSelectionModel().getSelectedItem().equals(0) 
+                && cbChild.getSelectionModel().getSelectedItem().equals(0)
+                && cbInfant.getSelectionModel().getSelectedItem().equals(0);
     }
     
-    private static void loadDestinationCBox(){
-        List<String> list = loadAirportInfo();
-        String selectedItem = departure.getValue();
-        if(selectedItem !=null){
-            list.remove(departure.getItems().indexOf(selectedItem));
+    /**
+     * Search Flight Button Handler
+     * @throws java.net.URISyntaxException
+     */
+    public static void searchBtnHandler() throws URISyntaxException{
+        if(isAllEmpty()){
+            MyNode.myAlert(Alert.AlertType.WARNING, "Warning"
+            , "All fields are empty!", "Please fill all fields", "").show();
+        }else{
+            loadScheduleTab();
         }
-        destination.getItems().addAll(list);
     }
     
-    private static ArrayList<String> loadAirportInfo(){
-        ArrayList<String> arrStr = new ArrayList<>();
-       
-        Utils.getAirportInfos().forEach((item) -> {
-            arrStr.add(item.getA_Address()+ " (" + item.getA_Id() + ")");
+    /**
+     * Method load data into combo box
+     */
+    public static void loadComboBox(){
+        //Combobox departure
+        cbDepart.getItems().addAll(Utils.getAirportInfos());
+        
+        //Combobox destination
+        cbDes.getItems().addAll(Utils.getAirportInfos());
+        cbDepart.valueProperty().addListener((ObservableValue<? extends AirportInfo> 
+                observable, AirportInfo oldValue, AirportInfo newValue) -> {
+            if(newValue != null)
+                getDestination(newValue);
         });
-        return arrStr;
     }
     
+     /**
+     * Method get destination list when departure was chosen
+     * @param ai
+     */
+    public static void getDestination(AirportInfo ai){
+        List<AirportInfo> desList = new ArrayList<>();
+            Utils.getDestinationByAId(ai).forEach(i ->{
+                desList.add(i.getArrivalAP());
+            });
+            
+        cbDes.getItems().setAll(desList);
+    }
+    
+    /**
+     * setup date picker
+     */
     private static void setUpDatePicker(){
         //Date Picker's date format
         depDate.setConverter(MyDate.setDateFormat());
@@ -139,29 +177,11 @@ public class FlightSearch{
         depDate.setValue(MyDate.getCurrentDate());
         reDate.setValue(MyDate.getCurrentDate());
     }
- 
-    private static boolean isAllEmpty(){
-        return departure.getPromptText().equals("Select Departure" )
-                && destination.getPromptText().equals("Select Destination")
-                && txtAdult.getText().isEmpty() && txtChild.getText().isEmpty()
-                && txtInfant.getText().isEmpty();
-    }
     
     /**
-     * Search Flight Button Handler
-     * @throws java.net.URISyntaxException
+     * Method set Schedule Tab 's text when button search is on click
      */
-    public static void SearchBtnHandler() throws URISyntaxException{
-        if(isAllEmpty()){
-            MyAlert.createAlert(Alert.AlertType.WARNING, "Warning"
-            , "All fields are empty!", "Please fill all fields", "").show();
-        }else{
-            loadScheduleDate();
-        }
-    }
-    
-    public static void loadScheduleDate(){
-        
+    public static void loadScheduleTab(){  
         LocalDate depDateVal = depDate.getValue();
         LocalDate lastDate = MyDate.getLastDate(depDateVal, 1);
         LocalDate nextDate = MyDate.getNextDate(depDateVal, 1);
@@ -219,7 +239,9 @@ public class FlightSearch{
         yearTab.setText(MyDate.getYear());
         openScheduleTab();
     }
-    
+    /**
+     * Method open chosen date tab
+     */
     public static void openScheduleTab(){
         scheduleTab.getTabs().forEach(tab ->{
             if(MyDate.subYear(depDate.getValue()).equals(tab.getText())){

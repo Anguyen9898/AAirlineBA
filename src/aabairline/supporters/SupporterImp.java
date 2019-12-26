@@ -5,6 +5,7 @@
  */
 package aabairline.supporters;
 
+import aabairline.Utils;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -13,8 +14,10 @@ import javafx.stage.Stage;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ProgressIndicator;
 import javafx.util.converter.LocalDateStringConverter; 
 
 /**
@@ -97,9 +100,9 @@ public interface SupporterImp{
         }
     }
     
-    public static class MyAlert{
-        
-        public static Alert createAlert(Alert.AlertType aType, String title
+    public static class MyNode{
+      
+        public static Alert myAlert(Alert.AlertType aType, String title
                 , String header, String content, String iconImg) throws URISyntaxException{
             Alert a = new Alert(aType);
             a.setTitle(title);
@@ -111,9 +114,24 @@ public interface SupporterImp{
            
             return a;
         }
+        
+        public static ProgressIndicator myIndicator(double startIndex){
+            ProgressIndicator pi = new ProgressIndicator();
+            pi.setProgress(startIndex++);
+            return pi;
+        }
     }
     
     public static class FlightRoute{
-        
+        List<String> frList;
+        public FlightRoute(){
+            frList = new ArrayList<>();
+        }
+    }
+    
+    public static class CreateID{
+        public static String newCustomer(){
+            return String.format("%s%05d", "cus", (Utils.countCustomer()+ 1));
+        }
     }
 }

@@ -5,6 +5,7 @@
  */
 package aabairline.pojo;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 /**
  *
@@ -20,8 +21,9 @@ public class AirportInfo implements Serializable{
     private String a_Name;
     @Column(name = "A_ADDRESS", length = 50, nullable = true)
     private String a_Address;
-//    @OneToMany(mappedBy = "airport_info")
-//    private List<AirportInfo> airportInfos;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "arrivalAP")
+    private List<Route> routes;
 
     public AirportInfo() {
         
@@ -31,6 +33,12 @@ public class AirportInfo implements Serializable{
         this.a_Id = a_Id;
         this.a_Name = a_Name;
         this.a_Address = a_Address;
+    }
+
+    @Override
+    public String toString() {
+        return this.a_Address + " - Sân bay " + this.a_Name + " (" 
+                    + this.a_Id + ")";
     }
     
     public String getA_Id() {
@@ -56,4 +64,14 @@ public class AirportInfo implements Serializable{
     public void setA_Address(String a_Address) {
         this.a_Address = a_Address;
     }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(List<Route> routes) {
+        this.routes = routes;
+    }
+    
+    
 }

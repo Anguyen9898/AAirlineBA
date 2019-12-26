@@ -53,7 +53,8 @@
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="8.0" prefHeight="56.66667175292969" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="64.0" prefHeight="393.6666564941406" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="2.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="62.0" prefHeight="393.6666564941406" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <GridPane styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -77,8 +78,8 @@
                                           <Label prefWidth="180.0" styleClass="TitleBackground" text="Children (from 2 - 11 years)" />
                                        </children>
                                     </VBox>
-                                    <TextField fx:id="txtAdult" prefHeight="36.0" prefWidth="705.0" text="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="txtChild" prefHeight="36.0" prefWidth="705.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cbAdult" prefHeight="30.0" prefWidth="317.0" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cbChild" layoutX="10.0" layoutY="37.0" prefHeight="30.0" prefWidth="317.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane layoutX="15.0" layoutY="209.0" styleClass="BookingCustom" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -98,8 +99,8 @@
                                           <Label prefWidth="180.0" styleClass="TitleBackground" text="Infant (from 24 months)" />
                                        </children>
                                     </VBox>
-                                    <TextField fx:id="txtInfant" prefHeight="36.0" prefWidth="705.0" text="0" GridPane.rowIndex="1" />
                                     <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#searchBtnHandler" prefHeight="76.0" prefWidth="289.0" styleClass="BookingBtn" text="Search Flights" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cbInfant" prefHeight="30.0" prefWidth="317.0" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -154,7 +155,7 @@
                                           <Label fx:id="lb" prefWidth="42.0" styleClass="TitleBackground" text="From" />
                                        </children>
                                     </VBox>
-                                    <ComboBox fx:id="departure" prefHeight="36.0" prefWidth="705.0" promptText="Select Departure" styleClass="ComboBox" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="departure" prefHeight="36.0" prefWidth="705.0" promptText="Select Departure" styleClass="DefaultColor" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane styleClass="BookingCustom" GridPane.columnIndex="3">
@@ -171,7 +172,7 @@
                                           <Label prefWidth="42.0" styleClass="TitleBackground" text="To" />
                                        </children>
                                     </VBox>
-                                    <ComboBox fx:id="destination" prefHeight="36.0" prefWidth="747.0" promptText="Select Destination" styleClass="ComboBox" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="destination" prefHeight="36.0" prefWidth="747.0" promptText="Select Destination" styleClass="DefaultColor" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <HBox prefHeight="100.0" prefWidth="200.0" styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -180,7 +181,7 @@
                                     <Button fx:id="btnRTrip" mnemonicParsing="true" prefHeight="32.0" prefWidth="404.0" styleClass="BookingBtn" text="Round Trip" />
                                  </children>
                               </HBox>
-                              <TabPane fx:id="scheduleTab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="5" GridPane.rowIndex="4">
+                              <TabPane fx:id="scheduleTab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="5" GridPane.rowIndex="5">
                                 <tabs>
                                     <Tab text="Schedule here!">
                                       <content>
@@ -213,7 +214,7 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                       </content>
                                     </Tab>
-                                    <Tab fx:id="yearTab" disable="true" text="Year" />
+                                    <Tab fx:id="yearTab" disable="true" styleClass="YearTab" text="                          Year" />
                                 </tabs>
                               </TabPane>
                            </children>
@@ -230,15 +231,16 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1029.6666564941406" minWidth="10.0" percentWidth="60.0" prefWidth="815.3333435058594" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="138.33334350585938" minHeight="10.0" percentHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="232.99999237060547" minHeight="10.0" percentHeight="44.0" prefHeight="169.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" percentHeight="36.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="138.33334350585938" minHeight="10.0" percentHeight="8.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="269.33331298828125" minHeight="10.0" percentHeight="36.0" prefHeight="248.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="269.33331298828125" minHeight="10.0" percentHeight="2.0" prefHeight="248.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" percentHeight="8.0" prefHeight="91.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" percentHeight="44.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="393.0" styleClass="PassengerCustom" GridPane.rowIndex="2">
+                        <HBox prefHeight="0.0" prefWidth="393.0" styleClass="PassengerCustom" GridPane.rowIndex="3">
                            <children>
-                              <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="42.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/userinfo.png" />
                                  </image>
@@ -251,7 +253,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <GridPane prefHeight="373.0" prefWidth="1329.0" styleClass="GridContactInfo" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                        <GridPane prefHeight="373.0" prefWidth="1329.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -262,53 +264,53 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <VBox prefHeight="79.0" prefWidth="720.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1">
-                                 <children>
-                                    <Label fx:id="lb11" prefHeight="20.0" prefWidth="98.0" styleClass="TitleBackground" text="Last Name (*)" />
-                                    <TextField prefHeight="45.0" prefWidth="657.0" />
-                                 </children>
-                              </VBox>
                               <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.rowIndex="1">
                                  <children>
-                                    <Label fx:id="lb12" prefHeight="20.0" prefWidth="71.0" styleClass="TitleBackground" text="Email (*)" />
-                                    <TextField prefHeight="45.0" prefWidth="343.0" />
+                                    <Label prefHeight="20.0" prefWidth="71.0" styleClass="TitleBackground" text="Email (*)" />
+                                    <TextField fx:id="txtEmail" prefHeight="45.0" prefWidth="343.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Label fx:id="lb13" prefHeight="20.0" prefWidth="130.0" styleClass="TitleBackground" text="Phone Number (*)" />
+                                    <Label prefHeight="20.0" prefWidth="130.0" styleClass="TitleBackground" text="Phone Number (*)" />
                                     <HBox prefHeight="100.0" prefWidth="200.0" styleClass="PassengerVboxLabel">
                                        <children>
-                                          <ComboBox prefHeight="45.0" prefWidth="418.0" />
-                                          <TextField prefHeight="45.0" prefWidth="573.0" />
+                                          <ComboBox fx:id="phoneArea" prefHeight="45.0" prefWidth="279.0" promptText="Phone prefix" />
+                                          <TextField fx:id="txtPhoneNum" prefHeight="45.0" prefWidth="573.0" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                               <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.rowIndex="2">
                                  <children>
-                                    <Label fx:id="lb121" prefHeight="20.0" prefWidth="88.0" styleClass="TitleBackground" text="Address (*)" />
-                                    <TextField prefHeight="45.0" prefWidth="658.0" />
+                                    <Label prefHeight="20.0" prefWidth="88.0" styleClass="TitleBackground" text="Address (*)" />
+                                    <TextField fx:id="txtAdress" prefHeight="45.0" prefWidth="658.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Label fx:id="lb14" prefWidth="79.0" styleClass="TitleBackground" text="Country" />
-                                    <ComboBox prefHeight="45.0" prefWidth="642.0" />
+                                    <Label prefWidth="79.0" styleClass="TitleBackground" text="Country (*)" />
+                                    <ComboBox fx:id="country" prefHeight="45.0" prefWidth="642.0" promptText="Select Country" />
                                  </children>
                               </VBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox prefHeight="10.0" prefWidth="589.0">
+                                    <VBox prefHeight="23.0" prefWidth="525.0">
                                        <children>
-                                          <Label fx:id="lb1" prefWidth="79.0" styleClass="TitleBackground" text="Suffix (*)" />
-                                          <ComboBox prefHeight="45.0" prefWidth="161.0" promptText="Select Suffix" />
+                                          <Label prefWidth="79.0" styleClass="TitleBackground" text="Suffix (*)" />
+                                          <ComboBox fx:id="bookerSuffix" prefHeight="43.0" prefWidth="161.0" promptText="Select Suffix" />
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="911.0">
+                                    <VBox prefHeight="61.0" prefWidth="706.0">
                                        <children>
-                                          <Label fx:id="lb111" prefHeight="20.0" prefWidth="203.0" styleClass="TitleBackground" text="First Name &amp; Middle Name (*)" />
-                                          <TextField prefHeight="45.0" prefWidth="657.0" />
+                                          <Label prefHeight="20.0" prefWidth="203.0" styleClass="TitleBackground" text="First Name &amp; Middle Name (*)" />
+                                          <TextField fx:id="txtBookerFMName" prefHeight="45.0" prefWidth="267.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="63.0" prefWidth="532.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="98.0" styleClass="TitleBackground" text="Last Name (*)" />
+                                          <TextField fx:id="txtBookerLastName" prefHeight="45.0" prefWidth="657.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -317,25 +319,17 @@
                                     <String fx:value="PassengerVboxLabel" />
                                  </styleClass>
                               </HBox>
+                              <VBox fillWidth="false" prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="128.0" styleClass="TitleBackground" text="ID card number (*)" />
+                                    <TextField fx:id="txtIDNum" prefHeight="45.0" prefWidth="343.0" />
+                                 </children>
+                              </VBox>
                            </children>
                         </GridPane>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="HboxNextBtn" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="71.0" styleClass="BookingBtn" text="++">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/search-var-flat.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <ListView prefHeight="413.0" prefWidth="1325.0" styleClass="PassengerListView" />
-                           </children>
-                        </VBox>
                         <HBox prefHeight="77.0" prefWidth="1315.0" styleClass="PassengerCustom">
                            <children>
-                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="42.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/passenger.png" />
                                  </image>
@@ -348,6 +342,83 @@
                               </VBox>
                            </children>
                         </HBox>
+                        <TabPane fx:id="passengerTab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                          <tabs>
+                            <Tab text="Passenger 1 (**)">
+                                 <content>
+                                    <GridPane prefHeight="373.0" prefWidth="1329.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="111.0" styleClass="TitleBackground" text="Date of birth (*)" />
+                                                <DatePicker fx:id="dateOfBirth" prefHeight="45.0" prefWidth="714.0" styleClass="DatePicker" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="102.0" styleClass="TitleBackground" text="Nationality (*)" />
+                                                <ComboBox fx:id="nationality" prefHeight="45.0" prefWidth="642.0" promptText="Select Nationality" />
+                                             </children>
+                                          </VBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox prefHeight="23.0" prefWidth="525.0">
+                                                   <children>
+                                                      <Label prefWidth="79.0" styleClass="TitleBackground" text="Suffix (*)" />
+                                                      <ComboBox fx:id="suffix" prefHeight="43.0" prefWidth="161.0" promptText="Select Suffix" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="61.0" prefWidth="706.0">
+                                                   <children>
+                                                      <Label prefHeight="20.0" prefWidth="203.0" styleClass="TitleBackground" text="First Name &amp; Middle Name (*)" />
+                                                      <TextField fx:id="txtPassFMName" prefHeight="45.0" prefWidth="267.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="63.0" prefWidth="532.0">
+                                                   <children>
+                                                      <Label prefHeight="20.0" prefWidth="98.0" styleClass="TitleBackground" text="Last Name (*)" />
+                                                      <TextField fx:id="txtPassLastName" prefHeight="45.0" prefWidth="657.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="PassengerBoxesFiled" />
+                                                <String fx:value="PassengerVboxLabel" />
+                                             </styleClass>
+                                          </HBox>
+                                          <HBox GridPane.columnIndex="1">
+                                             <children>
+                                                <VBox fillWidth="false" prefHeight="95.0" prefWidth="328.0" styleClass="PassengerBoxesFiled">
+                                                   <children>
+                                                      <Label prefHeight="20.0" prefWidth="194.0" styleClass="TitleBackground" text="Customer ID (*)" />
+                                                      <ComboBox fx:id="cusId" prefHeight="45.0" prefWidth="302.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </GridPane>
+                                 </content>
+                                 <graphic>
+                                    <CheckBox mnemonicParsing="false" styleClass="PassengerCheckBox" />
+                                 </graphic>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="PassengerNote" GridPane.columnIndex="1">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="168.0" text="(*)   Required fields" />
+                              <Label prefHeight="0.0" prefWidth="400.0" text="(**) Check if passenger was in customer data" />
+                           </children>
+                        </VBox>
                      </children>
                   </GridPane>
                </content>

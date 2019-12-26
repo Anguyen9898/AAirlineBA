@@ -5,7 +5,7 @@
  */
 package aabairline;
 
-import aabairline.pojo.AirportInfo;
+import aabairline.pojo.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -20,8 +20,10 @@ public class HibernateUtils {
     static {
         try {
             Configuration configure = new Configuration();
-            configure.addAnnotatedClass(AirportInfo.class);
             configure.configure("hibernate.cfg.xml");
+//            configure.addAnnotatedClass(AirportInfo.class);
+//            configure.addAnnotatedClass(Route.class);
+//            configure.addAnnotatedClass(Country.class);
             StandardServiceRegistryBuilder builder
                     = new StandardServiceRegistryBuilder()
                             .applySettings(configure.getProperties());

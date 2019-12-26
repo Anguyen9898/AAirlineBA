@@ -4,17 +4,16 @@
  * and open the template in the editor.
  */
 package aabairline;
-import aabairline.supporters.FlightSearch;
-import aabairline.supporters.Payment;
-import aabairline.supporters.Extras;
+import aabairline.pojo.*;
+import aabairline.supporters.*;
 import aabairline.supporters.SupporterImp;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -28,6 +27,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -56,23 +56,57 @@ public class FXMLBookingController implements Initializable{
     @FXML
     private GridPane returnDateTxtField;
     @FXML
-    private ComboBox<String> departure;
+    private ComboBox<AirportInfo> departure;
     @FXML
-    private ComboBox<String> destination;
+    private ComboBox<AirportInfo> destination;
     @FXML
     private DatePicker depDate;
     @FXML
     private DatePicker reDate;
     @FXML
-    private TextField txtAdult;
+    private ComboBox<Integer> cbAdult;
     @FXML
-    private TextField txtChild;
+    private ComboBox<Integer> cbChild;
     @FXML
-    private TextField txtInfant;
+    private ComboBox<Integer> cbInfant;
     @FXML
     private ListView lvDate;
     @FXML
     private ListView lvTime;
+    
+    //Passenger_Tab
+    @FXML
+    private TabPane passengerTab;
+    @FXML
+    private ComboBox<String> suffix;
+    @FXML
+    private ComboBox<String> phoneArea;
+    @FXML
+    private ComboBox<String> cusId;
+    @FXML
+    private ComboBox<Country> nationality;
+    @FXML
+    private ComboBox<Country> country;
+    @FXML
+    private DatePicker dateOfBirth;
+    @FXML
+    private TextField txtPassFMName;
+    @FXML
+    private TextField txtPassLastName;
+    @FXML
+    private TextField txtBookerFMName;
+    @FXML
+    private TextField txtBookerLastName;
+    @FXML
+    private TextField txtIDNum;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtPhoneNum;
+    @FXML
+    private TextField txtAdress;
+    @FXML
+    private ComboBox<String> bookerSuffix;
     
     //Payment_Tab
     @FXML
@@ -83,7 +117,7 @@ public class FXMLBookingController implements Initializable{
     private BorderPane cardMethod;
     @FXML
     private CheckBox payIma;
-     @FXML
+    @FXML
     private CheckBox payLater;
     @FXML
     private GridPane cashShow;
@@ -120,19 +154,26 @@ public class FXMLBookingController implements Initializable{
        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        BookingTab.getTabs().forEach(tab ->{
-               if(BookingTab.getTabs().indexOf(tab) != 0){
-                    tab.setDisable(true);
-               }
-        });
+//        BookingTab.getTabs().forEach(tab ->{
+//               if(BookingTab.getTabs().indexOf(tab) != 0){
+//                    tab.setDisable(true);
+//               }
+//        });
         btnFinish.setDisable(true);
         btnNext.setDisable(true);
         btnBack.setDisable(true);
         SupporterImp.MyDate.disablePastDate(depDate);
         SupporterImp.MyDate.disablePastDate(reDate);
-
+        
+        //FlightSearch tab
         new FlightSearch(btnOWay, btnRTrip, returnDateTxtField, departure, destination
-                , depDate, reDate, txtAdult, txtChild, txtInfant, scheduleTab, yearTab);
+                , depDate, reDate, cbAdult, cbChild, cbInfant, scheduleTab, yearTab);
+        
+        //Passenger tab
+        new PassengerDetail(passengerTab, suffix, bookerSuffix, phoneArea, cusId
+                , nationality, country, dateOfBirth, txtPassFMName, txtPassLastName
+                , txtBookerFMName, txtBookerLastName, txtIDNum, txtEmail, txtPhoneNum
+                , txtAdress);
         
         //Payment tab
         new Payment(btnFinish, paymentTab, cashMethod, cardMethod, payIma, payLater
@@ -150,7 +191,7 @@ public class FXMLBookingController implements Initializable{
      * @throws java.net.URISyntaxException
      */
     public void searchBtnHandler(ActionEvent event) throws URISyntaxException{
-        FlightSearch.SearchBtnHandler();
+        FlightSearch.searchBtnHandler();
     }
     
     /**
@@ -159,11 +200,11 @@ public class FXMLBookingController implements Initializable{
      * @throws java.net.URISyntaxException
      */
     public void exitBtnHandler(ActionEvent event) throws URISyntaxException{
-        SupporterImp.MyAlert.createAlert(Alert.AlertType.CONFIRMATION, "Exit", 
+        SupporterImp.MyNode.myAlert(Alert.AlertType.CONFIRMATION, "Exit Flight-Booking", 
                 "Are you sure to exit!", "", "images/cancel.png").showAndWait()
                 .ifPresent(respone ->{
                     if(respone == ButtonType.OK)
-                        Platform.exit();
+                        ((Stage)((Node)(event.getSource())).getScene().getWindow()).close();
                 });
     }
     

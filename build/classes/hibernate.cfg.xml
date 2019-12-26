@@ -41,10 +41,15 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aabairway?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aabairline?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">2410</property>
-    <property name="hibernate.connection.dialect">org.hibernate.dialect.DerbyDialect</property>
+    
+    <mapping class="aabairline.pojo.AirportInfo" />
+    <mapping class="aabairline.pojo.Route" />
+    <mapping class="aabairline.pojo.Country" />
+     <mapping class="aabairline.pojo.Customer" />
   </session-factory>
 </hibernate-configuration>

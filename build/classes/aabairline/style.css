@@ -7,16 +7,26 @@ and open the template in the editor.
     Created on : Dec 3, 2019, 5:09:49 PM
     Author     : anguy
 */
-.ComboBox .list-view .list-cell{
+* > .box{
+     -fx-padding: 2px;
+     -fx-border-color: darkblue;
+}
+* > .box > .mark{
+     -fx-padding: 13px;
+}
+ComboBox{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, whitesmoke, lightblue);
+}
+ComboBox .list-view .list-cell{
     -fx-font-size: 16px;
     -fx-text-fill: darkblue;
 }
-.ComboBox .list-view .list-cell:hover{
+ComboBox .list-view .list-cell:hover{
     -fx-font-size: 25px;
     -fx-background-color: linear-gradient(from 25% 25% to 100% 100%,darkgreen, yellowgreen);
-    -fx-text-fill: yellow;
+    -fx-text-fill: white;
 }
-.ComboBox .cell:selected {
+ComboBox .cell:selected {
     -fx-text-fill: darkblue;
     -fx-font-weight: bold;
 }
@@ -72,10 +82,10 @@ and open the template in the editor.
 .BookingPriceBox{
     -fx-alignment: CENTER_RIGHT;
     -fx-background-color: white;
-    -fx-spacing: 10px; 
+    -fx-spacing: 10px;
 }
 
-/*FXML Booking Style*/
+/*FXML Search Tab Style*/
 .BookingPattern{
     -fx-padding:5px;
     -fx-font-size: 14;
@@ -103,9 +113,18 @@ and open the template in the editor.
     -fx-background-color: lightblue;
     -fx-padding: 0 5px 0 5px;
 }
+.YearTab{
+    -fx-font-weight: bold;
+}
 /**/
 
 /*Passenger Tab*/
+.PassengerCheckBox > .box{
+    -fx-padding: 4px;
+}
+.PassengerCheckBox > .box > .mark{
+    -fx-padding: 6px;
+}
 .PassengerCustom{
    -fx-padding: 5px 0 0 10px;
    -fx-spacing: 10px;
@@ -115,7 +134,7 @@ and open the template in the editor.
     -fx-padding: 10px;
 }
 .PassengerTitle{
-    -fx-font: italic bold 23px/23px Calibri;
+    -fx-font: italic bold 20px/20px Calibri;
     -fx-fill: white;
 }
 .PassengerVboxLabel{
@@ -125,16 +144,17 @@ and open the template in the editor.
 .PassengerListView{
     -fx-background-color: transparent;
 }
+
+.PassengerNote{
+    -fx-font: italic 15px/15px Calibri;
+    -fx-padding: 10px 0 0 50px;
+}
+.PassengerNote> *{
+    -fx-background-color: lightyellow;
+}
 /**/
 /*Extras Style*/
 
-* > .box{
-     -fx-padding: 2px;
-     -fx-border-color: darkblue;
-}
-* > .box > .mark{
-     -fx-padding: 13px;
-}
 .ExtrasGrdBox{
     -fx-padding: 0 0 0 10px;
 }
@@ -246,7 +266,6 @@ and open the template in the editor.
 }
 .PaymentTimeOnChecked{
     -fx-background-color: whitesmoke;
-    -fx-border-width: 0px;
 }
 /**/
 /**/
