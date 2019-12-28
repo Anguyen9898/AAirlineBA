@@ -7,6 +7,7 @@ package aabairline;
 import aabairline.pojo.*;
 import aabairline.supporters.*;
 import aabairline.supporters.SupporterImp;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,8 +49,6 @@ public class FXMLBookingController implements Initializable{
     @FXML
     private TabPane scheduleTab;
     @FXML
-    private Tab yearTab;
-    @FXML
     private Button btnOWay;
     @FXML
     private Button btnRTrip;
@@ -88,15 +87,13 @@ public class FXMLBookingController implements Initializable{
     @FXML
     private ComboBox<Country> country;
     @FXML
+    private ComboBox<String> cbAccom;
+    @FXML
     private DatePicker dateOfBirth;
     @FXML
     private TextField txtPassFMName;
     @FXML
-    private TextField txtPassLastName;
-    @FXML
-    private TextField txtBookerFMName;
-    @FXML
-    private TextField txtBookerLastName;
+    private TextField txtFullName;
     @FXML
     private TextField txtIDNum;
     @FXML
@@ -159,21 +156,20 @@ public class FXMLBookingController implements Initializable{
 //                    tab.setDisable(true);
 //               }
 //        });
-        btnFinish.setDisable(true);
-        btnNext.setDisable(true);
-        btnBack.setDisable(true);
-        SupporterImp.MyDate.disablePastDate(depDate);
-        SupporterImp.MyDate.disablePastDate(reDate);
+//        btnFinish.setDisable(true);
+//        btnNext.setDisable(true);
+//        btnBack.setDisable(true);
+//        SupporterImp.MyDate.disablePastDate(depDate);
+//        SupporterImp.MyDate.disablePastDate(reDate);
         
         //FlightSearch tab
         new FlightSearch(btnOWay, btnRTrip, returnDateTxtField, departure, destination
-                , depDate, reDate, cbAdult, cbChild, cbInfant, scheduleTab, yearTab);
+                , depDate, reDate, cbAdult, cbChild, cbInfant, scheduleTab);
         
         //Passenger tab
         new PassengerDetail(passengerTab, suffix, bookerSuffix, phoneArea, cusId
-                , nationality, country, dateOfBirth, txtPassFMName, txtPassLastName
-                , txtBookerFMName, txtBookerLastName, txtIDNum, txtEmail, txtPhoneNum
-                , txtAdress);
+                , nationality, country, dateOfBirth, txtPassFMName, txtFullName
+                , txtIDNum, txtEmail, txtPhoneNum, txtAdress, cbAccom);
         
         //Payment tab
         new Payment(btnFinish, paymentTab, cashMethod, cardMethod, payIma, payLater
@@ -211,11 +207,41 @@ public class FXMLBookingController implements Initializable{
     /**
      * Next Button Handler
      * @param event 
+     * @throws java.io.IOException 
      */
-    public void nextBtnHandler(ActionEvent event){
+    public void nextBtnHandler(ActionEvent event) throws IOException{
+        //Move to next tab
+        nextTab();
+        //Create passenger detail tab
+        tabPassengerAmout();
+    }
+    
+    public void nextTab(){
         int i = BookingTab.getSelectionModel().getSelectedIndex();
         if(i < 3)
             BookingTab.getSelectionModel().select(BookingTab.getTabs().get(i + 1));
+    }
+    public int getAdultCount(){
+        return cbAdult.getSelectionModel().getSelectedItem();
+    }
+    
+    public int getChildrenCount(){
+        return cbChild.getSelectionModel().getSelectedItem();
+    }
+    
+    public int getInfantCount(){
+        return cbInfant.getSelectionModel().getSelectedItem();
+    }
+    
+    public void tabPassengerAmout() throws IOException{
+        int sum = getAdultCount() + getChildrenCount() + getInfantCount();
+        PassengerDetail.childrenCount = getChildrenCount();
+        PassengerDetail.infantCount = getInfantCount();
+        if(sum > 1){
+            PassengerDetail.passengerCount = sum;
+            PassengerDetail.setExtrasPassTab(this.getClass()
+                    .getResource("FXMLExtrasPassenger.fxml"));
+        }
     }
     
     /**

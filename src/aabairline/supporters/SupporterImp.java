@@ -27,10 +27,9 @@ import javafx.util.converter.LocalDateStringConverter;
 public interface SupporterImp{
    
     public static class MyDate{
-        private static String year;
          
-        public static String getYear() {
-            return year;
+        public static String getYear(LocalDate date) {
+            return String.valueOf(date.getYear());
         }
         
         public static LocalDate getCurrentDate(){
@@ -49,7 +48,7 @@ public interface SupporterImp{
            if(!isCurrentDate(date)){
                return date.minusDays(i);
            }
-           return null;
+           return date;
         }
         
         public static LocalDateStringConverter setDateFormat(){
@@ -66,7 +65,6 @@ public interface SupporterImp{
         
         public static String subYear(LocalDate date){
             String str = convertDateToString(date);
-            year = str.substring(str.length() - 4, str.length());
             return str.substring(0, str.length() - 6);
         }
         

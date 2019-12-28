@@ -41,6 +41,31 @@ INSERT INTO `airport_info` VALUES ('BMV','Buôn Ma Thuột','Đắk Lắk'),('CX
 UNLOCK TABLES;
 
 --
+-- Table structure for table `country`
+--
+
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `country` (
+  `CT_ID` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `CT_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `CT_PPrefix` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`CT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `country`
+--
+
+LOCK TABLES `country` WRITE;
+/*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES ('SK','South Korea','+82'),('USA','America','+1'),('VN','Viet Nam','+84');
+/*!40000 ALTER TABLE `country` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer`
 --
 
@@ -50,13 +75,17 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `C_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `C_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `C_IDNNUMBER` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `C_PHONE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `C_DAYOFBIRTH` date DEFAULT NULL,
-  `C_ADDRESS` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_IDNUMBER` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `C_PHONE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `C_DAYOFBIRTH` date NOT NULL,
+  `C_ADDRESS` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `C_COUNTRY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `C_NATIONALITY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`C_ID`)
+  PRIMARY KEY (`C_ID`),
+  KEY `FK_CusToCT_idx` (`C_COUNTRY`,`C_NATIONALITY`),
+  KEY `FK_CusToCT1_idx` (`C_NATIONALITY`),
+  CONSTRAINT `FK_CusToCT` FOREIGN KEY (`C_COUNTRY`) REFERENCES `country` (`CT_ID`),
+  CONSTRAINT `FK_CusToCT1` FOREIGN KEY (`C_NATIONALITY`) REFERENCES `country` (`CT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,7 +95,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('cus001','Nguyễn Thị Thanh','568856287','0735548311','1981-05-23',NULL,'',''),('cus002','Trần Quang An','643125784','0504260246','1998-01-26',NULL,'',''),('cus003','Nguyễn Văn Bình','355246251','0513820256','1995-09-06',NULL,'',''),('cus004','Lê Phan Anh','731433461','0701511400','1992-09-24',NULL,'',''),('cus005','Trần Nhật An','511635405','0774745361','1990-01-17',NULL,'',''),('cus006','Đỗ Văn Mỹ','811617362','0347170574','1986-01-14',NULL,'',''),('cus007','Trần Nhật Dương','184312144','0760537260','1966-04-19',NULL,'',''),('cus008','Lê Nhật Anh','542173106','0357266856','1969-08-16',NULL,'',''),('cus009','Trần Văn Bảo','638811861','0356744721','1971-02-15',NULL,'',''),('cus010','Đỗ Phan Dương','402206137','4022061374','1992-10-24',NULL,'','');
+INSERT INTO `customer` VALUES ('cus00001','Nguyễn Thị Thanh','568856287','0735548311','1981-05-23','1 Nguyễn Kiệm TP.HCM','VN','VN'),('cus00002','Trần Quang An','643125784','0504260246','1998-01-26','2 Nguyễn Kiệm TP.HCM','VN','VN');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,4 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-26 19:58:30
+-- Dump completed on 2019-12-27 16:32:31

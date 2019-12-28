@@ -20,7 +20,6 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
 /**
@@ -43,13 +42,13 @@ public class FlightSearch{
     private static ComboBox<Integer> cbChild;
     private static ComboBox<Integer> cbInfant;
     
-    private static Tab yearTab;
     private static final Integer[] arrAges = {0, 1, 2, 3, 4, 5};
     
     public FlightSearch(Button btnOWay, Button btnRTrip, GridPane returnDateTxtField
             , ComboBox<AirportInfo> departure,  ComboBox<AirportInfo> destination
             , DatePicker depDate, DatePicker reDate, ComboBox<Integer> txtAdult
-            , ComboBox<Integer> txtChild, ComboBox<Integer> txtInfant, TabPane scheduleTab, Tab year) {
+            , ComboBox<Integer> txtChild, ComboBox<Integer> txtInfant, TabPane scheduleTab)
+    {
         
         FlightSearch.btnOWay = btnOWay;
         FlightSearch.btnRTrip = btnRTrip;
@@ -62,7 +61,6 @@ public class FlightSearch{
         FlightSearch.cbChild = txtChild;
         FlightSearch.cbInfant = txtInfant;
         FlightSearch.scheduleTab = scheduleTab;
-        FlightSearch.yearTab = year;
         //Excute
         FlightSearch.init();
     }
@@ -93,7 +91,7 @@ public class FlightSearch{
         cbChild.getItems().addAll(arrAges);
         cbChild.getSelectionModel().select(0);
         //Setup combobox infant age
-        cbInfant.getItems().addAll(arrAges);
+        cbInfant.getItems().addAll(0, 1);
         cbInfant.getSelectionModel().select(0);
     }
       
@@ -182,62 +180,41 @@ public class FlightSearch{
      * Method set Schedule Tab 's text when button search is on click
      */
     public static void loadScheduleTab(){  
-        LocalDate depDateVal = depDate.getValue();
-        LocalDate lastDate = MyDate.getLastDate(depDateVal, 1);
-        LocalDate nextDate = MyDate.getNextDate(depDateVal, 1);
+        scheduleTab.getTabs().get(7).setText(MyDate.getYear(depDate.getValue()));
         
-//        List<LocalDate> localDates = new ArrayList<>();
-//        LocalDate nextDate = MyDate.convertDateFromString(depDate
-//                .getEditor().getText());//first value
-//        LocalDate lastDate = MyDate.convertDateFromString(depDate
-//                .getEditor().getText());//first value
-        
-        //get last dates
-//        do {            
-//            lastDate = MyDate.getLastDate(lastDate, 1);
-//            if(lastDate != null){
-//                if(localDates.isEmpty()){
-//                    localDates.add(lastDate);
-//                }else{
-//                    localDates.add(0, lastDate);
-//                }
-//            }
-//        } while(lastDate != null);
-//        
-//        //get next dates
-//        int length = scheduleTab.getTabs().size() - localDates.size();
-//        for (int i = 0; i < length; i++) {
-//            localDates.add(nextDate);
-//            nextDate = MyDate.getNextDate(nextDate, 1);
-//        }
-//        
-//        //show dates
-//        for (int i = 0; i < scheduleTab.getTabs().size(); i++) {
-//            scheduleTab.getTabs().get(i).setText(MyDate.subYear(localDates.get(i)));
-//        }
-        
-        if(MyDate.isCurrentDate(depDateVal)){
-            //First tab 
-            //Get date value & cut year off
-            scheduleTab.getTabs().get(0).setText(MyDate.subYear(depDateVal)); 
-            //Other tabs
-            for (int i = 1; i < (scheduleTab.getTabs().size() - 1); i++) {
-                scheduleTab.getTabs().get(i).setText(MyDate.subYear(nextDate));
-                nextDate = MyDate.getNextDate(nextDate, 1);
-            }
-        }else{
-            scheduleTab.getTabs().get(3).setText(MyDate.subYear(depDateVal));
-            for (int i = 4; i < (scheduleTab.getTabs().size() - 1); i++) {
-               scheduleTab.getTabs().get(i).setText(MyDate.subYear(nextDate));
-               nextDate = MyDate.getNextDate(nextDate, 1);
-            }
-            for (int i = 2; i >= 0; i--) {
-               scheduleTab.getTabs().get(i).setText(MyDate.subYear(lastDate));
-               lastDate = MyDate.getLastDate(lastDate, 1);
+        LocalDate nextDate = depDate.getValue();
+        scheduleTab.getTabs().get(0).setText(MyDate.subYear(nextDate));
+
+        for(int i = setFirstTab(); i < scheduleTab.getTabs().size() - 1; i++){
+            nextDate = MyDate.getNextDate(nextDate, 1);
+            scheduleTab.getTabs().get(i).setText(MyDate.subYear(nextDate));
+        }
+        openScheduleTab();
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public static int setFirstTab(){
+        int count = 0;
+        LocalDate lastDate = depDate.getValue();
+        for(int i = 1; i < scheduleTab.getTabs().size(); i++){
+            if(!MyDate.isCurrentDate(lastDate)  && i <= 3 ){
+                int j = i;
+                while(j > 0){
+                    scheduleTab.getTabs().get(j).setText(scheduleTab.getTabs()
+                            .get(j - 1).getText());
+                    j = j - 1;
+                }
+                lastDate = MyDate.getLastDate(lastDate, 1);
+                scheduleTab.getTabs().get(0).setText(MyDate.subYear(lastDate));
+                
+                count++;
             }
         }
-        yearTab.setText(MyDate.getYear());
-        openScheduleTab();
+        
+        return count + 1;
     }
     /**
      * Method open chosen date tab
