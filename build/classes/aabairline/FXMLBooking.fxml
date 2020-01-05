@@ -9,10 +9,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -53,8 +54,8 @@
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="8.0" prefHeight="56.66667175292969" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="2.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="62.0" prefHeight="393.6666564941406" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="4.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="60.0" prefHeight="393.6666564941406" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <GridPane styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -181,42 +182,17 @@
                                     <Button fx:id="btnRTrip" mnemonicParsing="true" prefHeight="32.0" prefWidth="404.0" styleClass="BookingBtn" text="Round Trip" />
                                  </children>
                               </HBox>
-                              <TabPane fx:id="scheduleTab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="5" GridPane.rowIndex="5">
-                                <tabs>
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                  <Tab text="Schedule here!" />
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Schedule here!">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab disable="true" styleClass="YearTab" text="                          Year" />
-                                </tabs>
-                              </TabPane>
+                              <TableView fx:id="scheduleTa" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowIndex="5">
+                                 <columns>
+                                    <TableColumn prefWidth="113.0" text="Your Choice" />
+                                    <TableColumn prefWidth="117.0" text="Flight ID" />
+                                    <TableColumn prefWidth="255.0" text="Departure Date" />
+                                    <TableColumn prefWidth="249.0" text="Departure Time" />
+                                    <TableColumn prefWidth="188.0" text="Arrival Date" />
+                                    <TableColumn prefWidth="234.333251953125" text="Arrival Time" />
+                                    <TableColumn minWidth="0.0" prefWidth="199.666748046875" text="Price" />
+                                 </columns>
+                              </TableView>
                            </children>
                         </GridPane>
                      </children>
@@ -266,16 +242,10 @@
                            <children>
                               <HBox GridPane.rowIndex="1">
                                  <children>
-                                    <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled">
+                                    <VBox prefHeight="92.0" prefWidth="733.0" styleClass="PassengerBoxesFiled">
                                        <children>
                                           <Label prefHeight="20.0" prefWidth="71.0" styleClass="TitleBackground" text="Email (*)" />
-                                          <TextField fx:id="txtEmail" prefHeight="45.0" prefWidth="343.0" />
-                                       </children>
-                                    </VBox>
-                                    <VBox fillWidth="false" prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled">
-                                       <children>
-                                          <Label prefHeight="20.0" prefWidth="128.0" styleClass="TitleBackground" text="ID card number (*)" />
-                                          <TextField fx:id="txtIDNum" prefHeight="45.0" prefWidth="343.0" />
+                                          <TextField fx:id="txtEmail" prefHeight="45.0" prefWidth="600.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -295,13 +265,13 @@
                                     <String fx:value="PassengerBoxesFiled" />
                                  </styleClass>
                               </VBox>
-                              <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.rowIndex="2">
+                              <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
                                     <Label prefHeight="20.0" prefWidth="88.0" styleClass="TitleBackground" text="Address (*)" />
                                     <TextField fx:id="txtAdress" prefHeight="45.0" prefWidth="600.0" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.rowIndex="2">
                                  <children>
                                     <Label prefWidth="79.0" styleClass="TitleBackground" text="Country (*)" />
                                     <ComboBox fx:id="country" prefHeight="45.0" prefWidth="600.0" promptText="Select Country" />
@@ -327,6 +297,12 @@
                                     <String fx:value="PassengerVboxLabel" />
                                  </styleClass>
                               </HBox>
+                              <VBox fillWidth="false" prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="128.0" styleClass="TitleBackground" text="ID card number (*)" />
+                                    <TextField fx:id="txtIDNum" prefHeight="45.0" prefWidth="488.0" />
+                                 </children>
+                              </VBox>
                            </children>
                         </GridPane>
                         <HBox prefHeight="77.0" prefWidth="1315.0" styleClass="PassengerCustom">
@@ -831,10 +807,10 @@
             <String fx:value="HboxNextBtn" />
          </styleClass>
       </HBox>
-      <HBox prefHeight="58.0" prefWidth="637.0" styleClass="BookingPriceBox" GridPane.rowIndex="1">
+      <HBox prefHeight="58.0" prefWidth="331.0" styleClass="BookingPriceBox" GridPane.rowIndex="1">
          <children>
             <Label styleClass="BookingPrice" text="Total" />
-            <Label styleClass="BookingPrice" text="000,000,000" />
+            <Label fx:id="lbPrice" styleClass="BookingPrice" text="000,000,000" />
             <Label styleClass="TitleBackground" text="VND" />
          </children>
       </HBox>

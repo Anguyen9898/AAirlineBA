@@ -48,8 +48,10 @@ Contributor(s):
     <property name="hibernate.connection.password">2410</property>
     
     <mapping class="aabairline.pojo.AirportInfo" />
-    <mapping class="aabairline.pojo.Route" />
     <mapping class="aabairline.pojo.Country" />
-     <mapping class="aabairline.pojo.Customer" />
+    <mapping class="aabairline.pojo.Customer" />
+    <mapping class="aabairline.pojo.FlightInfo"/>
+    <mapping class="aabairline.pojo.Route" />
+   
   </session-factory>
 </hibernate-configuration>

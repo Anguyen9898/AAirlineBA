@@ -6,6 +6,7 @@
 package aabairline.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -16,20 +17,54 @@ import javax.persistence.*;
 @Table(name = "route")
 public class Route implements Serializable {
     @Id
+    @Column(name = "R_ID")
+    private String id;
+    
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Arrival_ID")
+    @JoinColumn(name = "TakeOffPlace")
     private AirportInfo takeOffAP;
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "TakeOff_ID")
+    @JoinColumn(name = "ArrivalPlace")
     private AirportInfo arrivalAP;
+    
+    @Column(name = "R_DETAIL")
+    private String detail;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+    private List<FlightInfo> flightInfos;
 
+    @Override
+    public String toString() {
+        return detail;
+    }
+    
     public Route() {
     }
-
-    public Route(AirportInfo takeOffAP, AirportInfo arrivalAP) {
-        this.takeOffAP = takeOffAP;
+    
+    public Route(String id, AirportInfo arrivalAP, AirportInfo takeOffAP, String detail, List<FlightInfo> flgInfos) {
+        this.id = id;
         this.arrivalAP = arrivalAP;
+        this.takeOffAP = takeOffAP;
+        this.detail = detail;
+        this.flightInfos = flgInfos;
+    }
+
+    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
     
     public AirportInfo getTakeOffAP() {
@@ -47,4 +82,14 @@ public class Route implements Serializable {
     public void setArrivalAP(AirportInfo arrivalAP) {
         this.arrivalAP = arrivalAP;
     }
+
+    public List<FlightInfo> getFlgInfos() {
+        return flightInfos;
+    }
+
+    public void setFlgInfos(List<FlightInfo> flgInfos) {
+        this.flightInfos = flgInfos;
+    }
+    
+    
 }

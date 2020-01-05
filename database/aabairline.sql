@@ -61,7 +61,7 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
-INSERT INTO `country` VALUES ('SK','South Korea','+82'),('USA','America','+1'),('VN','Viet Nam','+84');
+INSERT INTO `country` VALUES ('CN','China','+86'),('DE','Germany','+49'),('FR','France','+33'),('JP','Japan','+81'),('KH','Cambodia','+855'),('LA','Laos','+865'),('SG','Singapore','+65'),('SK','South Korea','+82'),('TH','Thaland','+66'),('UK','United Kingdom','+44'),('US','United States','+1'),('VN','Viet Nam','+84');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,11 +75,13 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `C_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `C_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `C_IDNUMBER` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `C_PHONE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `C_IDNUMBER` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_GENDER` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `C_PHONE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `C_DAYOFBIRTH` date NOT NULL,
-  `C_ADDRESS` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `C_COUNTRY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `C_EMAIL` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_ADDRESS` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `C_COUNTRY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `C_NATIONALITY` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`C_ID`),
   KEY `FK_CusToCT_idx` (`C_COUNTRY`,`C_NATIONALITY`),
@@ -95,7 +97,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('cus00001','Nguyễn Thị Thanh','568856287','0735548311','1981-05-23','1 Nguyễn Kiệm TP.HCM','VN','VN'),('cus00002','Trần Quang An','643125784','0504260246','1998-01-26','2 Nguyễn Kiệm TP.HCM','VN','VN');
+INSERT INTO `customer` VALUES ('cus00001','Nguyễn Thị Thanh','568856287','Nam','0735548311','1981-05-23','thanh@gmail.com','1 Nguyễn Kiệm TP.HCM','VN','VN'),('cus00002','Trần Quang An','643125784','Nữ','0504260246','1998-01-26','an@gmail.com','2 Nguyễn Kiệm TP.HCM','VN','VN');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,33 +130,6 @@ INSERT INTO `employee` VALUES ('fa001','Đỗ Thị Thanh','1988-07-27','6187571
 UNLOCK TABLES;
 
 --
--- Table structure for table `filght_schedule`
---
-
-DROP TABLE IF EXISTS `filght_schedule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filght_schedule` (
-  `F_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `DEPATURE_DATE` date NOT NULL,
-  `PL_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`F_ID`,`DEPATURE_DATE`),
-  KEY `FK_FSToPlane_idx` (`PL_ID`),
-  CONSTRAINT `FK_FSToFInfo` FOREIGN KEY (`F_ID`, `DEPATURE_DATE`) REFERENCES `flight_info` (`F_ID`, `F_TAKEOFFDATE`),
-  CONSTRAINT `FK_FSToPlane` FOREIGN KEY (`PL_ID`) REFERENCES `plane` (`PL_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `filght_schedule`
---
-
-LOCK TABLES `filght_schedule` WRITE;
-/*!40000 ALTER TABLE `filght_schedule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `filght_schedule` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `flight_info`
 --
 
@@ -165,14 +140,13 @@ CREATE TABLE `flight_info` (
   `F_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `F_TAKEOFFDATE` date NOT NULL,
   `F_TAKEOFFTIME` time DEFAULT NULL,
-  `F_TAKEOFFPLACE` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `F_ARRIVALDATE` date DEFAULT NULL,
   `F_ARRIVALTIME` time DEFAULT NULL,
-  `F_ARRIVALPLACE` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `F_ROUTE` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `F_PRICE` double NOT NULL,
   PRIMARY KEY (`F_ID`,`F_TAKEOFFDATE`),
-  KEY `FK_FInfoToRoute_idx` (`F_TAKEOFFPLACE`),
-  KEY `FK_FInfoToRoute1_idx` (`F_ARRIVALPLACE`),
-  CONSTRAINT `FK_FInfoToRoute` FOREIGN KEY (`F_TAKEOFFPLACE`) REFERENCES `route` (`TakeOff_ID`),
-  CONSTRAINT `FK_FInfoToRoute1` FOREIGN KEY (`F_ARRIVALPLACE`) REFERENCES `route` (`Arrival_ID`)
+  KEY `FK_FInfoToRoute_idx` (`F_ROUTE`),
+  CONSTRAINT `FK_FInfoToRoute` FOREIGN KEY (`F_ROUTE`) REFERENCES `route` (`R_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -182,6 +156,7 @@ CREATE TABLE `flight_info` (
 
 LOCK TABLES `flight_info` WRITE;
 /*!40000 ALTER TABLE `flight_info` DISABLE KEYS */;
+INSERT INTO `flight_info` VALUES ('fl0001','2019-12-30','09:00:00','2019-12-30','21:00:00','r001',20000000),('fl0002','2020-01-05','18:00:00','2020-02-06','17:00:00','r001',30000000),('fl0003','2020-01-05','18:00:00','2020-02-06','17:00:00','r001',20000),('fl0004','2019-12-30','09:00:00','2019-12-30','21:00:00','r001',1000),('fl0005','2019-11-26','03:00:00','2019-11-26','19:30:00','r021',50000000),('fl0006','2019-10-30','17:00:00','2019-10-31','10:30:00','r020',20000000),('fl0007','2019-11-26','07:45:00','2019-11-26','18:30:00','r019',40000000),('fl0008','2019-10-17','04:00:00','2019-10-17','15:45:00','r018',80000000),('fl0009','2019-10-15','16:30:00','2019-10-16','08:30:00','r017',40000000),('fl0010','2019-12-03','13:45:00','2019-12-04','02:30:00','r016',20000000),('fl0011','2019-12-17','19:30:00','2019-12-17','21:45:00','r015',10000000),('fl0012','2019-11-02','18:00:00','2019-11-03','11:30:00','r014',20000000),('fl0013','2019-12-04','12:30:00','2019-12-04','18:45:00','r013',20000000),('fl0014','2019-10-09','09:45:00','2019-10-10','11:00:00','r012',20000000),('fl0015','2019-10-08','08:00:00','2019-10-08','11:00:00','r011',20000000),('fl0016','2019-11-02','15:00:00','2019-11-03','16:00:00','r010',20000000),('fl0017','2019-12-04','23:30:00','2019-12-05','05:00:00','r009',40000000),('fl0018','2019-11-06','10:00:00','2019-11-07','11:45:00','r008',20000000),('fl0019','2019-10-17','17:45:00','2019-10-17','21:00:00','r007',80000000),('fl0020','2019-10-15','05:00:00','2019-10-15','19:00:00','r006',50000000),('fl0021','2019-05-12','02:00:00','2019-05-12','13:00:00','r002',20000000),('fl0022','2019-08-16','18:45:00','2019-08-17','16:00:00','r003',50000000),('fl0023','2019-09-21','16:45:00','2019-09-22','20:00:00','r004',30000000),('fl0024','2019-09-26','22:45:00','2019-09-27','03:45:00','r005',90000000),('fl0025','2020-01-05','09:00:00','2019-12-30','21:00:00','r001',1000),('fl0026','2020-01-05','18:00:00','2020-02-06','17:00:00','r001',20000),('fl0027','2020-01-04','07:00:00','2020-01-04','17:00:00','r002',5000000),('fl0028','2020-01-04','17:00:00','2020-01-05','17:00:00','r003',500000);
 /*!40000 ALTER TABLE `flight_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,12 +169,26 @@ DROP TABLE IF EXISTS `flying`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `flying` (
   `F_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `E_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  ` BE_ASSIGNED` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`F_ID`,`E_ID`),
-  KEY `FK_FlyingToEmployee_idx` (`E_ID`),
-  CONSTRAINT `FK_FlyingToEmployee` FOREIGN KEY (`E_ID`) REFERENCES `employee` (`E_ID`),
-  CONSTRAINT `FK_FlyingToFS` FOREIGN KEY (`F_ID`) REFERENCES `filght_schedule` (`F_ID`)
+  `MainPilot` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `SidePilot` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `F_Attendant1` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `F_Attendant2` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `F_Attendant3` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `PL_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`F_ID`),
+  KEY `FK_FlyingToPlane_idx` (`PL_ID`),
+  KEY `FK_FlyingToEmp_idx` (`MainPilot`,`SidePilot`),
+  KEY `FK_FlyingToEmp1_idx` (`SidePilot`),
+  KEY `FK_FlyingToEmp2_idx` (`F_Attendant1`),
+  KEY `FK_FlyingToEmp3_idx` (`F_Attendant2`),
+  KEY `FK_FlyingToEmp4_idx` (`F_Attendant3`),
+  CONSTRAINT `FK_FlyingToEmp` FOREIGN KEY (`MainPilot`) REFERENCES `employee` (`E_ID`),
+  CONSTRAINT `FK_FlyingToEmp1` FOREIGN KEY (`SidePilot`) REFERENCES `employee` (`E_ID`),
+  CONSTRAINT `FK_FlyingToEmp2` FOREIGN KEY (`F_Attendant1`) REFERENCES `employee` (`E_ID`),
+  CONSTRAINT `FK_FlyingToEmp3` FOREIGN KEY (`F_Attendant2`) REFERENCES `employee` (`E_ID`),
+  CONSTRAINT `FK_FlyingToEmp4` FOREIGN KEY (`F_Attendant3`) REFERENCES `employee` (`E_ID`),
+  CONSTRAINT `FK_FlyingToFL` FOREIGN KEY (`F_ID`) REFERENCES `flight_info` (`F_ID`),
+  CONSTRAINT `FK_FlyingToPlane` FOREIGN KEY (`PL_ID`) REFERENCES `plane` (`PL_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -209,6 +198,7 @@ CREATE TABLE `flying` (
 
 LOCK TABLES `flying` WRITE;
 /*!40000 ALTER TABLE `flying` DISABLE KEYS */;
+INSERT INTO `flying` VALUES ('fl0001','pl001','pl002','fa001','fa002','fa003','VN-A001'),('fl0002','pl002','pl001','fa003','fa002','fa001','VN-A002'),('fl0003','pl003','pl004','fa004','fa005','fa006','VN-A003'),('fl0004','pl004','pl005','fa005','fa007','fa003','VN-A004'),('fl0005','pl002','pl006','fa005','fa010','fa009','VN-A005'),('fl0006','pl010','pl003','fa011','fa007','fa013','VN-A006'),('fl0007','pl003','pl005','fa001','fa002','fa003','VN-A007'),('fl0008','pl010','pl002','fa010','fa020','fa019','VN-A008'),('fl0009','pl005','pl007','fa011','fa017','fa015','VN-A009'),('fl0010','pl004','pl008','fa003','fa008','fa005','VN-A010'),('fl0011','pl009','pl002','fa003','fa006','fa020','VN-A010'),('fl0012','pl004','pl007','fa018','fa015','fa014','VN-A009'),('fl0013','pl001','pl002','fa001','fa002','fa003','VN-A008'),('fl0014','pl001','pl002','fa001','fa002','fa003','VN-A007'),('fl0015','pl001','pl002','fa001','fa002','fa003','VN-A006'),('fl0016','pl001','pl002','fa001','fa002','fa003','VN-A005'),('fl0017','pl001','pl002','fa001','fa002','fa003','VN-A007'),('fl0018','pl001','pl002','fa001','fa002','fa003','VN-A008'),('fl0019','pl001','pl002','fa001','fa002','fa003','VN-A009'),('fl0020','pl001','pl002','fa001','fa002','fa003','VN-A002'),('fl0021','pl001','pl002','fa001','fa002','fa003','VN-A001'),('fl0022','pl001','pl002','fa001','fa002','fa003','VN-A002'),('fl0023','pl001','pl002','fa001','fa002','fa003','VN-A003'),('fl0024','pl001','pl002','fa001','fa002','fa003','VN-A004');
 /*!40000 ALTER TABLE `flying` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,12 +235,15 @@ DROP TABLE IF EXISTS `route`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `route` (
-  `Arrival_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `TakeOff_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`Arrival_ID`,`TakeOff_ID`),
-  KEY `FK_RouteToAirport1_idx` (`TakeOff_ID`),
-  CONSTRAINT `FK_RouteToAirport` FOREIGN KEY (`Arrival_ID`) REFERENCES `airport_info` (`A_ID`),
-  CONSTRAINT `FK_RouteToAirport1` FOREIGN KEY (`TakeOff_ID`) REFERENCES `airport_info` (`A_ID`)
+  `R_ID` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `TakeOffPlace` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ArrivalPlace` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `R_DETAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`R_ID`,`TakeOffPlace`,`ArrivalPlace`),
+  KEY `FK_RouteToAirport_idx` (`TakeOffPlace`),
+  KEY `FK_RouteToAirport1_idx` (`ArrivalPlace`),
+  CONSTRAINT `FK_RouteToAirport` FOREIGN KEY (`TakeOffPlace`) REFERENCES `airport_info` (`A_ID`),
+  CONSTRAINT `FK_RouteToAirport1` FOREIGN KEY (`ArrivalPlace`) REFERENCES `airport_info` (`A_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -260,7 +253,7 @@ CREATE TABLE `route` (
 
 LOCK TABLES `route` WRITE;
 /*!40000 ALTER TABLE `route` DISABLE KEYS */;
-INSERT INTO `route` VALUES ('DAD','BMV'),('HAN','BMV'),('HPH','BMV'),('VII','BMV'),('HPH','CXR'),('ICN','CXR'),('BMV','DAD'),('DLI','DAD'),('HPH','DAD'),('ICN','DAD'),('PXU','DAD'),('SGN','DAD'),('TPE','DAD'),('DAD','DLI'),('HAN','DLI'),('BMV','HAN'),('CXR','HAN'),('DAD','HAN'),('DLI','HAN'),('HUI','HAN'),('PQC','HAN'),('PXU','HAN'),('SGN','HAN'),('TPE','HAN'),('UIH','HAN'),('VCA','HAN'),('VCL','HAN'),('VDH','HAN'),('VII','HAN'),('BMV','HPH'),('CXR','HPH'),('SGN','HPH'),('UIH','HPH'),('CXR','ICN'),('HPH','SGN'),('HUI','SGN'),('THD','SGN'),('UIH','SGN'),('VDH','SGN'),('VDO','SGN'),('VII','SGN'),('DAD','TPE'),('HAN','VCA'),('HAN','VCL'),('SGN','VDH'),('BMV','VII');
+INSERT INTO `route` VALUES ('r001','BMV','DAD',''),('r002','BMV','HAN',''),('r003','BMV','HPH',''),('r004','BMV','VII',''),('r005','CXR','HPH',''),('r006','CXR','ICN',''),('r007','DAD','BMV',''),('r008','DAD','DLI',''),('r009','DAD','HPH',''),('r010','DAD','ICN',''),('r011','DAD','PXU',''),('r012','DAD','SGN',''),('r013','DAD','TPE',''),('r014','DLI','DAD',''),('r015','DLI','HAN',''),('r016','HAN','BMV',''),('r017','HAN','CXR',''),('r018','HAN','DAD',''),('r019','HAN','DLI',''),('r020','HAN','HUI',''),('r021','HAN','PQC',''),('r022','HAN','PXU',''),('r023','HAN','SGN',''),('r024','HAN','TPE',''),('r025','HAN','UIH',''),('r026','HAN','VCA',''),('r027','HAN','VCL',''),('r028','HAN','VDH',''),('r029','HAN','VII',''),('r030','HPH','BMV',''),('r031','HPH','CXR',''),('r032','HPH','SGN',''),('r033','HPH','UIH',''),('r034','ICN','CXR',''),('r035','SGN','HPH',''),('r036','SGN','HUI',''),('r037','SGN','THD',''),('r038','SGN','UIH',''),('r039','SGN','VDH',''),('r040','SGN','VDO',''),('r041','SGN','VII',''),('r042','TPE','DAD',''),('r043','VCA','HAN',''),('r044','VCL','HAN',''),('r045','VDH','SGN',''),('r046','VII','BMV',''),('r047','UIH','HAN',''),('r048','UIH','HPH',''),('r049','UIH','SGN','');
 /*!40000 ALTER TABLE `route` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,12 +272,17 @@ CREATE TABLE `ticket` (
   `BOOKING_TIME` time NOT NULL,
   `BOOKING_DATE` date NOT NULL,
   `IS_ROUNDTRIP` tinyint(4) NOT NULL,
-  `BACKDATE` date DEFAULT NULL,
+  `BACKTRIP` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SEAT_ID` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `PRICE` double DEFAULT NULL,
+  `Booker` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`C_ID`,`F_ID`,`TA_ID`,`DEPARTURE_DATE`),
   KEY `FK_TicketToTA_idx` (`TA_ID`),
-  KEY `FK_TicketToFS_idx` (`F_ID`,`DEPARTURE_DATE`),
+  KEY `FK_TicketToFL_idx` (`F_ID`),
+  KEY `FK_TicketToCus_idx` (`Booker`),
   CONSTRAINT `FK_TicketToCus` FOREIGN KEY (`C_ID`) REFERENCES `customer` (`C_ID`),
-  CONSTRAINT `FK_TicketToFS` FOREIGN KEY (`F_ID`, `DEPARTURE_DATE`) REFERENCES `filght_schedule` (`F_ID`, `DEPATURE_DATE`),
+  CONSTRAINT `FK_TicketToCus1` FOREIGN KEY (`Booker`) REFERENCES `customer` (`C_ID`),
+  CONSTRAINT `FK_TicketToFL` FOREIGN KEY (`F_ID`) REFERENCES `flight_info` (`F_ID`),
   CONSTRAINT `FK_TicketToTA` FOREIGN KEY (`TA_ID`) REFERENCES `ticketing_agent` (`TA_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -323,6 +321,7 @@ CREATE TABLE `ticketing_agent` (
 
 LOCK TABLES `ticketing_agent` WRITE;
 /*!40000 ALTER TABLE `ticketing_agent` DISABLE KEYS */;
+INSERT INTO `ticketing_agent` VALUES ('ta001','Nguyễn Vân Trường An','025767462','1998-10-24','09255712712','Anguyen đẹp zai','2410'),('ta002','Trần Châu Nhật Bảo','012345678','1998-01-01','0912345676','Tôi bị khùng','12131456'),('ta003','Đỗ Quang Ân','087654321','1998-02-03','0923532432','Tôi bị điên','1234');
 /*!40000 ALTER TABLE `ticketing_agent` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -335,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-27 16:32:31
+-- Dump completed on 2020-01-05 14:28:39

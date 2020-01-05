@@ -96,10 +96,13 @@ public class PassengerDetail {
         
         //Setup Combobox
         passSuffix.getItems().addAll(arrSuffix);
+        
         bookerSuffix.getItems().addAll(arrSuffix);
+        
         cbCountry.getItems().addAll(Utils.getCountry());
-        cbCountry.getItems().addAll(Utils.getCountry());
+        
         cbNationality.getItems().addAll(Utils.getCountry());
+        
         cbPPrefix.getItems().addAll(Utils.getPhonePrefix());
         
         String strId = CreateID.newCustomer();
@@ -115,7 +118,6 @@ public class PassengerDetail {
                 observable, String oldValue, String newValue) ->{
             bookerSuffix.valueProperty().unbind();
         });
-        
             
         txtPassFMName.textProperty().addListener(e -> {
             txtFName.setText(txtPassFMName.getText());

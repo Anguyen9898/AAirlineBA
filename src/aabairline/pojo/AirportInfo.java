@@ -23,17 +23,24 @@ public class AirportInfo implements Serializable{
     private String a_Address;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "arrivalAP")
-    private List<Route> routes;
+    private List<Route> arrivalAp;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "takeOffAP")
+    private List<Route> takeOffAp;
 
     public AirportInfo() {
         
     }
-    
-    public AirportInfo(String a_Id, String a_Name, String a_Address) {
+
+    public AirportInfo(String a_Id, String a_Name, String a_Address, List<Route> arrivalAp, List<Route> takeOffAp) {
         this.a_Id = a_Id;
         this.a_Name = a_Name;
         this.a_Address = a_Address;
+        this.arrivalAp = arrivalAp;
+        this.takeOffAp = takeOffAp;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -66,11 +73,27 @@ public class AirportInfo implements Serializable{
     }
 
     public List<Route> getRoutes() {
-        return routes;
+        return arrivalAp;
     }
 
     public void setRoutes(List<Route> routes) {
-        this.routes = routes;
+        this.arrivalAp = routes;
+    }
+
+    public List<Route> getArrivalAp() {
+        return arrivalAp;
+    }
+
+    public void setArrivalAp(List<Route> arrivalAp) {
+        this.arrivalAp = arrivalAp;
+    }
+
+    public List<Route> getTakeOffAp() {
+        return takeOffAp;
+    }
+
+    public void setTakeOffAp(List<Route> takeOffAp) {
+        this.takeOffAp = takeOffAp;
     }
     
     

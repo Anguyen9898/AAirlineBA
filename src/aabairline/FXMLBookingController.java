@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package aabairline;
+import aabairline.supporters.FlightSearch;
 import aabairline.pojo.*;
 import aabairline.supporters.*;
-import aabairline.supporters.SupporterImp;
+import aabairline.supporters.SupporterImp.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,11 +28,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
+import aabairline.supporters.CompleteBooking.*;
 /**
  * FXML Controller class
  *
@@ -44,10 +48,12 @@ public class FXMLBookingController implements Initializable{
     private Button btnNext;
     @FXML
     private Button btnBack;
+    @FXML
+    private Label lbPrice;
     
     //FlightSearch_Tab
     @FXML
-    private TabPane scheduleTab;
+    private TableView scheduleTa;
     @FXML
     private Button btnOWay;
     @FXML
@@ -68,10 +74,6 @@ public class FXMLBookingController implements Initializable{
     private ComboBox<Integer> cbChild;
     @FXML
     private ComboBox<Integer> cbInfant;
-    @FXML
-    private ListView lvDate;
-    @FXML
-    private ListView lvTime;
     
     //Passenger_Tab
     @FXML
@@ -151,20 +153,15 @@ public class FXMLBookingController implements Initializable{
        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        BookingTab.getTabs().forEach(tab ->{
-//               if(BookingTab.getTabs().indexOf(tab) != 0){
-//                    tab.setDisable(true);
-//               }
-//        });
-//        btnFinish.setDisable(true);
-//        btnNext.setDisable(true);
-//        btnBack.setDisable(true);
-//        SupporterImp.MyDate.disablePastDate(depDate);
-//        SupporterImp.MyDate.disablePastDate(reDate);
-        
         //FlightSearch tab
-        new FlightSearch(btnOWay, btnRTrip, returnDateTxtField, departure, destination
-                , depDate, reDate, cbAdult, cbChild, cbInfant, scheduleTab);
+        try {
+            new FlightSearch(btnOWay, btnRTrip, returnDateTxtField, departure
+                    , destination, depDate, reDate, cbAdult, cbChild, cbInfant
+                    , scheduleTa, lbPrice);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLBookingController.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
         
         //Passenger tab
         new PassengerDetail(passengerTab, suffix, bookerSuffix, phoneArea, cusId
@@ -185,8 +182,10 @@ public class FXMLBookingController implements Initializable{
      * Search Flight Button Handler
      * @param event
      * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
-    public void searchBtnHandler(ActionEvent event) throws URISyntaxException{
+    public void searchBtnHandler(ActionEvent event) throws URISyntaxException
+            , IOException{
         FlightSearch.searchBtnHandler();
     }
     
@@ -196,7 +195,7 @@ public class FXMLBookingController implements Initializable{
      * @throws java.net.URISyntaxException
      */
     public void exitBtnHandler(ActionEvent event) throws URISyntaxException{
-        SupporterImp.MyNode.myAlert(Alert.AlertType.CONFIRMATION, "Exit Flight-Booking", 
+        ModifledNode.myAlert(Alert.AlertType.CONFIRMATION, "Exit Flight-Booking", 
                 "Are you sure to exit!", "", "images/cancel.png").showAndWait()
                 .ifPresent(respone ->{
                     if(respone == ButtonType.OK)
@@ -214,6 +213,7 @@ public class FXMLBookingController implements Initializable{
         nextTab();
         //Create passenger detail tab
         tabPassengerAmout();
+       
     }
     
     public void nextTab(){

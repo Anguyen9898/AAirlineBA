@@ -7,6 +7,7 @@ package aabairline;
 
 import aabairline.pojo.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -24,10 +25,6 @@ public class Utils {
     //private static Query query;
     private static final SessionFactory factory = HibernateUtils.getSessionFactory();
     
-    /**
-     * Airport table
-     * @return 
-     */
     public static List<AirportInfo> getAirportInfos(){
         session = factory.openSession();
         cr = session.createCriteria(AirportInfo.class);
@@ -36,11 +33,6 @@ public class Utils {
         return airportInfos;
     }
     
-    /**
-     * Route table
-     * @param ai
-     * @return 
-     */
     public static List<Route> getDestinationByAId(AirportInfo ai){
         session = factory.openSession();
         cr = session.createCriteria(Route.class);
@@ -50,10 +42,6 @@ public class Utils {
         return routes;
     }
     
-    /**
-     * Country table
-     * @return 
-     */
     public static List<Country> getCountry(){
         session = factory.openSession();
         cr = session.createCriteria(Country.class);
@@ -70,10 +58,6 @@ public class Utils {
         return phonePrefix;
     }
     
-    /**
-     * Customer table
-     * @return 
-     */
     public static long countCustomer(){
         session = factory.openSession();
         cr = session.createCriteria(Customer.class);
@@ -91,4 +75,27 @@ public class Utils {
         session.close(); 
         return customers;
     }
+   
+    public static List<Route> getRoutesByAirportId(AirportInfo takeOffId
+            , AirportInfo arrival){
+        session = factory.openSession();
+        cr = session.createCriteria(Route.class);
+       
+        cr.add(Restrictions.and(Restrictions.eq("takeOffAP", takeOffId),
+                Restrictions.eq("arrivalAP", arrival)));
+        List<Route> route = cr.list();
+        session.close(); 
+        return route;
+    }
+    
+    public static List<FlightInfo> getFlightInfosByCon(Date date, Route route){
+        session = factory.openSession();
+        cr = session.createCriteria(FlightInfo.class);
+        cr.add(Restrictions.and(Restrictions.like("takeOfDate", date)
+                , Restrictions.eq("route", route)));
+        List<FlightInfo> flightInfos = cr.list();
+        session.close(); 
+        return flightInfos;
+    }
+    
 }
