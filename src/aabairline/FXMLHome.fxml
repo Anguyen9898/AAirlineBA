@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="686.0" prefWidth="1325.0" styleClass="BackgroundImage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aabairline.FXMLHomeController">
+<GridPane prefHeight="600.0" prefWidth="1000.0" styleClass="BackgroundImage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aabairline.FXMLHomeController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -28,69 +28,28 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="177.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="12.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="324.0" minHeight="10.0" prefHeight="242.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="251.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="197.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="533.0" minHeight="10.0" prefHeight="453.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <HBox prefHeight="474.0" prefWidth="443.0" GridPane.columnIndex="1">
+               <styleClass>
+                  <String fx:value="HBoxHome" />
+                  <String fx:value="CenterTitle" />
+               </styleClass>
                <children>
-                  <ImageView fitHeight="171.0" fitWidth="281.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="169.0" fitWidth="534.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/MainLogo.png" />
                      </image>
                   </ImageView>
                </children>
-               <styleClass>
-                  <String fx:value="HBoxHome" />
-                  <String fx:value="CenterTitle" />
-               </styleClass>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <HBox prefHeight="218.0" prefWidth="389.0" styleClass="HBoxHome" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="303.0" prefWidth="592.0" styleClass="Button" text="Search">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#flightDetailBtnHandler" prefHeight="262.0" prefWidth="380.0" styleClass="Button" text="Flights Detail">
                      <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/search-var-flat.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="303.0" prefWidth="592.0" styleClass="Button" text="Report">
-                     <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/report.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox prefHeight="218.0" prefWidth="389.0" styleClass="HBoxHome" GridPane.rowIndex="2">
-               <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#bookingBtnHandler" prefHeight="303.0" prefWidth="592.0" text="Booking">
-                     <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/ticket-book.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="303.0" prefWidth="592.0" styleClass="Button" text="Flight Info">
-                     <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/0d2af7d0e45d8c095cf44faf4ab63335.png" />
                            </image>
@@ -99,11 +58,11 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="303.0" prefWidth="592.0" styleClass="Button" text="Flight Schedule ">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#flightEditorBtnHandler" prefHeight="262.0" prefWidth="380.0" styleClass="Button" text="Flights Editor">
                      <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/scheduler-icon-29.jpg.png" />
                            </image>
@@ -112,24 +71,24 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.rowIndex="3">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.rowIndex="1">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="303.0" prefWidth="592.0" styleClass="Button" text="Booking Checked">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#bookingBtnHandler" prefHeight="262.0" prefWidth="380.0" text="Booking">
                      <graphic>
-                        <ImageView fitHeight="158.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/!-02.png" />
+                              <Image url="@images/ticket-book.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
             </HBox>
-            <GridPane styleClass="EmpInfo">
+            <GridPane styleClass="EmpInfo" GridPane.columnIndex="2">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.33331298828125" minWidth="10.0" percentWidth="30.0" prefWidth="136.66668701171875" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.33331298828125" minWidth="10.0" percentWidth="70.0" prefWidth="218.33331298828125" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.33331298828125" minWidth="10.0" percentWidth="70.0" prefWidth="218.33331298828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.33331298828125" minWidth="10.0" percentWidth="8.0" prefWidth="136.66668701171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.33331298828125" minWidth="10.0" percentWidth="38.0" prefWidth="218.33331298828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.33331298828125" minWidth="10.0" percentWidth="124.0" prefWidth="218.33331298828125" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -138,20 +97,29 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox prefWidth="123.0" GridPane.columnSpan="2">
+                  <HBox prefHeight="35.0" prefWidth="126.0" GridPane.columnSpan="3">
                      <children>
                         <Label text="Hi!" />
-                        <Label text="User Name" />
+                        <Label fx:id="lbUserName" text="User Name" />
                      </children>
                   </HBox>
                   <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="(Departure)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="lbName" text="(Departure)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label text="Gender" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="(Destination)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label text="Employee ID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="(TravelTime)" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="lbGender" text="(Destination)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Emp ID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lbEmpId" text="(TravelTime)" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                </children>
             </GridPane>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#logoutBtnHandler" prefHeight="66.0" prefWidth="208.0" styleClass="Button" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/airplane_back-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="CenterTitle" GridPane.rowIndex="1">

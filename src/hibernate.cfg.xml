@@ -46,12 +46,18 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aabairline?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">2410</property>
+<!--    <property name="hibernate.enable_lazy_load_no_trans">true</property>-->
     
     <mapping class="aabairline.pojo.AirportInfo" />
     <mapping class="aabairline.pojo.Country" />
     <mapping class="aabairline.pojo.Customer" />
+    <mapping class="aabairline.pojo.Employee" />
     <mapping class="aabairline.pojo.FlightInfo"/>
+    <mapping class="aabairline.pojo.Flying" />
+    <mapping class="aabairline.pojo.Plane" />
     <mapping class="aabairline.pojo.Route" />
+    <mapping class="aabairline.pojo.Ticket" />
+    <mapping class="aabairline.pojo.TicketingAgent" />
    
   </session-factory>
 </hibernate-configuration>

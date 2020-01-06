@@ -25,9 +25,6 @@ public class Country implements Serializable {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
     private List<Customer> countries;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nationality")
-    private List<Customer> nationality;
-    
     public Country() {
     }
     
@@ -65,15 +62,6 @@ public class Country implements Serializable {
     public void setCountries(List<Customer> countries) {
         this.countries = countries;
     }
-
-    public List<Customer> getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(List<Customer> nationality) {
-        this.nationality = nationality;
-    }
-    
 
     public String getPhonePrefix() {
         return phonePrefix;

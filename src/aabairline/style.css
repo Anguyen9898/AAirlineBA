@@ -104,6 +104,7 @@ TableView{
     -fx-alignment: CENTER_LEFT;
     -fx-background-color: white;
     -fx-spacing: 10px;
+    -fx-padding: 0 0 0 35px;
 }
 
 /*FXML Search Tab Style*/
@@ -143,6 +144,13 @@ TableView{
 
 ListView > .list-cell:cell-selection{
     -fx-pref-columns: 50;
+}
+
+.SelectedTicketLabel{
+    -fx-font: bold 25px/25px Calibri;
+    -fx-text-fill: #0505b7;
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, lightgreen, green);
+    -fx-padding: 0 0 0 30px;
 }
 /**/
 

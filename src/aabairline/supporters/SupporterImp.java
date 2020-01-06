@@ -6,6 +6,7 @@
 package aabairline.supporters;
 
 import aabairline.Utils;
+import java.io.IOException;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -18,9 +19,15 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.FormatStyle;
 import java.util.Date;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.util.converter.LocalDateStringConverter; 
 
 /**
@@ -70,11 +77,11 @@ public interface SupporterImp{
                 .toInstant());
         }
         
-        public LocalDate convertToLocalDateVia(Date dateToConvert) {
+        public static LocalDate convertToLocalDateVia(Date dateToConvert) {
             return Instant.ofEpochMilli(dateToConvert.getTime())
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate();
-}
+        }
 //        public static String subYear(LocalDate date){
 //            String str = convertDateToString(date);
 //            return str.substring(0, str.length() - 6);
@@ -114,7 +121,7 @@ public interface SupporterImp{
         }
     }
     
-    public static class ModifledNode{
+    public static class ModifiedNode{
         
         public static URL getResource(String name){
             return aabairline.AABAirLine.class.getResource(name);
@@ -133,14 +140,21 @@ public interface SupporterImp{
             return a;
         }
         
-        public class myCheckBox extends CheckBox{
-            public myCheckBox(){
-                super();
-                this.setDisable(true);
-                this.getStyleClass().add("MyCheckBox");
-                this.setSelected(true);
-            }
+        public static void openChidrenWindow(String strFXML, String icon
+                , ActionEvent event) throws IOException{
+             
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(aabairline.AABAirLine
+                    .class.getResource(strFXML))));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.getIcons().add(new Image(aabairline.AABAirLine
+                    .class.getResource(icon).toString()));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
+            stage.show();     
         }
+        
+        
        
         
 //        public static ProgressIndicator myIndicator(double startIndex){
@@ -172,6 +186,15 @@ public interface SupporterImp{
 //            });
 //        }
     }
+    
+    public class myCheckBox extends CheckBox{
+            public myCheckBox(){
+                super();
+                this.setDisable(true);
+                this.getStyleClass().add("MyCheckBox");
+                this.setSelected(true);
+            }
+        }
     
     public static class CreateID{
         public static String newCustomer(){

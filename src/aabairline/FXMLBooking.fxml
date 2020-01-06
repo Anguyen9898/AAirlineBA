@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +13,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,8 +22,8 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1365.0" styleClass="BackgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aabairline.FXMLBookingController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1126.3333129882812" minWidth="10.0" prefWidth="316.66668701171875" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1110.6666717529297" minWidth="10.0" prefWidth="1048.3333129882812" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1126.3333129882812" minWidth="10.0" prefWidth="359.33331298828125" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1110.6666717529297" minWidth="10.0" prefWidth="1005.6666870117188" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" percentHeight="92.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -55,10 +53,11 @@
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="9.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="4.0" prefHeight="90.33334350585938" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="60.0" prefHeight="393.6666564941406" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="60.0" prefHeight="392.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="539.0000152587891" minHeight="10.0" percentHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <GridPane styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <GridPane disable="true" styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" percentWidth="2.0" />
@@ -95,13 +94,13 @@
                                  </rowConstraints>
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="BookingDate" />
-                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="BookingCustom">
+                                    <VBox disable="true" prefHeight="200.0" prefWidth="100.0" styleClass="BookingCustom">
                                        <children>
                                           <Label prefWidth="180.0" styleClass="TitleBackground" text="Infant (from 24 months)" />
                                        </children>
                                     </VBox>
                                     <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#searchBtnHandler" prefHeight="76.0" prefWidth="289.0" styleClass="BookingBtn" text="Search Flights" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="cbInfant" prefHeight="30.0" prefWidth="317.0" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cbInfant" disable="true" prefHeight="30.0" prefWidth="317.0" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -179,12 +178,11 @@
                               <HBox prefHeight="100.0" prefWidth="200.0" styleClass="BookingCustom" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Button fx:id="btnOWay" mnemonicParsing="true" prefHeight="32.0" prefWidth="404.0" styleClass="BookingBtn" text="Oneway" />
-                                    <Button fx:id="btnRTrip" mnemonicParsing="true" prefHeight="32.0" prefWidth="404.0" styleClass="BookingBtn" text="Round Trip" />
+                                    <Button fx:id="btnRTrip" disable="true" mnemonicParsing="true" prefHeight="32.0" prefWidth="404.0" styleClass="BookingBtn" text="Round Trip" />
                                  </children>
                               </HBox>
                               <TableView fx:id="scheduleTa" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowIndex="5">
                                  <columns>
-                                    <TableColumn prefWidth="113.0" text="Your Choice" />
                                     <TableColumn prefWidth="117.0" text="Flight ID" />
                                     <TableColumn prefWidth="255.0" text="Departure Date" />
                                     <TableColumn prefWidth="249.0" text="Departure Time" />
@@ -193,13 +191,14 @@
                                     <TableColumn minWidth="0.0" prefWidth="199.666748046875" text="Price" />
                                  </columns>
                               </TableView>
+                              <Label fx:id="lbTicket" prefHeight="57.0" prefWidth="675.0" styleClass="SelectedTicketLabel" text="Your choice's here!" GridPane.columnSpan="2" GridPane.rowIndex="6" />
                            </children>
                         </GridPane>
                      </children>
                   </VBox>
                </content>
             </Tab>
-            <Tab text="Passenger Detail">
+            <Tab disable="true" text="Passenger Detail">
                <content>
                   <GridPane styleClass="BookingPattern">
                      <columnConstraints>
@@ -279,16 +278,16 @@
                               </VBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox prefHeight="23.0" prefWidth="525.0">
-                                       <children>
-                                          <Label prefWidth="79.0" styleClass="TitleBackground" text="Suffix (*)" />
-                                          <ComboBox fx:id="bookerSuffix" prefHeight="43.0" prefWidth="161.0" promptText="Select Suffix" />
-                                       </children>
-                                    </VBox>
                                     <VBox prefHeight="72.0" prefWidth="842.0">
                                        <children>
                                           <Label prefHeight="20.0" prefWidth="203.0" styleClass="TitleBackground" text="Full Name" />
                                           <TextField fx:id="txtFullName" prefHeight="45.0" prefWidth="267.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="23.0" prefWidth="525.0">
+                                       <children>
+                                          <Label prefWidth="79.0" styleClass="TitleBackground" text="Gender (*)" />
+                                          <ComboBox fx:id="bookerGender" prefHeight="43.0" prefWidth="161.0" promptText="Select Gender" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -342,16 +341,16 @@
                                           </VBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <VBox prefHeight="23.0" prefWidth="525.0">
-                                                   <children>
-                                                      <Label prefWidth="79.0" styleClass="TitleBackground" text="Suffix (*)" />
-                                                      <ComboBox fx:id="suffix" prefHeight="43.0" prefWidth="161.0" promptText="Select Suffix" />
-                                                   </children>
-                                                </VBox>
                                                 <VBox prefHeight="75.0" prefWidth="848.0">
                                                    <children>
                                                       <Label prefHeight="20.0" prefWidth="203.0" styleClass="TitleBackground" text="Full Name" />
                                                       <TextField fx:id="txtPassFMName" prefHeight="45.0" prefWidth="462.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="23.0" prefWidth="525.0">
+                                                   <children>
+                                                      <Label prefWidth="79.0" styleClass="TitleBackground" text="Gender (*)" />
+                                                      <ComboBox fx:id="gender" prefHeight="43.0" prefWidth="161.0" promptText="Select Gender" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -364,8 +363,8 @@
                                              <children>
                                                 <VBox prefHeight="95.0" prefWidth="706.0" styleClass="PassengerBoxesFiled">
                                                    <children>
-                                                      <Label prefHeight="20.0" prefWidth="102.0" styleClass="TitleBackground" text="Nationality (*)" />
-                                                      <ComboBox fx:id="nationality" prefHeight="45.0" prefWidth="600.0" promptText="Select Nationality" />
+                                                      <Label prefHeight="20.0" prefWidth="102.0" styleClass="TitleBackground" text="Country (*)" />
+                                                      <ComboBox fx:id="nationality" prefHeight="45.0" prefWidth="600.0" promptText="Select Country" />
                                                    </children>
                                                 </VBox>
                                                 <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled">
@@ -379,7 +378,7 @@
                                           <VBox fillWidth="false" prefHeight="95.0" prefWidth="328.0" styleClass="PassengerBoxesFiled" GridPane.columnIndex="1">
                                              <children>
                                                 <Label prefHeight="20.0" prefWidth="194.0" styleClass="TitleBackground" text="Customer ID (*)" />
-                                                <ComboBox fx:id="cusId" prefHeight="43.0" prefWidth="302.0" />
+                                                <ComboBox fx:id="cbCusId" prefHeight="43.0" prefWidth="302.0" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -401,366 +400,6 @@
                   </GridPane>
                </content>
             </Tab>
-            <Tab text="Extras">
-               <content>
-                  <GridPane fx:id="exGridPane">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.3333129882812" minWidth="10.0" prefWidth="634.6666259765625" />
-                        <ColumnConstraints fillWidth="false" maxWidth="691.0" minWidth="488.3333740234375" prefWidth="689.6666870117188" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="411.0" minHeight="10.0" percentHeight="10.0" prefHeight="46.666664123535156" vgrow="SOMETIMES" />
-                      <RowConstraints fillHeight="false" maxHeight="418.0" minHeight="10.0" percentHeight="45.0" prefHeight="330.0" vgrow="SOMETIMES" />
-                      <RowConstraints fillHeight="false" maxHeight="346.3333435058594" minHeight="0.0" percentHeight="45.0" prefHeight="213.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="87.0" prefWidth="360.0" styleClass="PassengerCustom">
-                           <children>
-                              <ImageView fitHeight="51.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/luggage.jpg" />
-                                 </image>
-                              </ImageView>
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="PassengerVboxLabel">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Cutomize" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Extras Selection" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <GridPane prefHeight="202.0" prefWidth="768.0" styleClass="ExtrasGrdBox" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="47.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <VBox prefHeight="383.0" prefWidth="41.0" styleClass="ExtrasCheckbox">
-                                 <children>
-                                    <CheckBox fx:id="seatCheckBox" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" />
-                                 </children>
-                              </VBox>
-                              <ImageView fitHeight="222.0" fitWidth="646.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                                 <image>
-                                    <Image url="@images/SeatSelection.PNG" />
-                                 </image>
-                              </ImageView>
-                              <ListView fx:id="seatSelect" prefHeight="400.0" prefWidth="618.0" GridPane.columnIndex="2" />
-                           </children>
-                        </GridPane>
-                        <GridPane prefHeight="202.0" prefWidth="1306.0" styleClass="ExtrasGrdBox" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.6666564941406" minWidth="0.0" percentWidth="3.0" prefWidth="34.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="620.0" minWidth="10.0" percentWidth="49.0" prefWidth="586.0" />
-                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="620.0" minWidth="10.0" percentWidth="48.0" prefWidth="586.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <VBox prefHeight="76.0" prefWidth="39.0" styleClass="ExtrasCheckbox">
-                                 <children>
-                                    <CheckBox fx:id="luggCheckBox" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" />
-                                 </children>
-                              </VBox>
-                              <ImageView fitHeight="203.0" fitWidth="647.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                                 <image>
-                                    <Image url="@images/luggageSelection.PNG" />
-                                 </image>
-                              </ImageView>
-                              <GridPane fx:id="luggSelect" prefHeight="203.0" prefWidth="614.0" styleClass="ExtrasLuggSelection" GridPane.columnIndex="2">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <VBox prefHeight="102.0" prefWidth="185.0" styleClass="PicBox">
-                                       <children>
-                                          <ImageView fitHeight="75.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/20kg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </VBox>
-                                    <HBox prefHeight="6.0" prefWidth="106.0" styleClass="Selectbox" GridPane.rowIndex="1">
-                                       <children>
-                                          <CheckBox fx:id="lugg20kg" mnemonicParsing="false" />
-                                       </children>
-                                    </HBox>
-                                    <VBox prefWidth="417.0" styleClass="PicBox" GridPane.columnIndex="4">
-                                       <children>
-                                          <ImageView fitHeight="90.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/40kg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="133.0" prefWidth="344.0" styleClass="PicBox" GridPane.columnIndex="3">
-                                       <children>
-                                          <ImageView fitHeight="86.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/35kg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="117.0" prefWidth="187.0" styleClass="PicBox" GridPane.columnIndex="2">
-                                       <children>
-                                          <ImageView fitHeight="80.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/30kg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="113.0" prefWidth="285.0" styleClass="PicBox" GridPane.columnIndex="1">
-                                       <children>
-                                          <ImageView fitHeight="78.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/25kg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </VBox>
-                                    <HBox styleClass="Selectbox" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <children>
-                                          <CheckBox fx:id="lugg25kg" mnemonicParsing="false" />
-                                       </children>
-                                    </HBox>
-                                    <HBox styleClass="Selectbox" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <children>
-                                          <CheckBox fx:id="lugg30kg" mnemonicParsing="false" />
-                                       </children>
-                                    </HBox>
-                                    <HBox styleClass="Selectbox" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                       <children>
-                                          <CheckBox fx:id="lugg35kg" mnemonicParsing="false" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefWidth="146.0" styleClass="Selectbox" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                       <children>
-                                          <CheckBox fx:id="lugg40kg" mnemonicParsing="false" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab fx:id="paymentTab" text="Payment">
-               <content>
-                  <GridPane styleClass="BookingPattern">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="53.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="82.33332824707031" minHeight="10.0" percentHeight="10.0" prefHeight="82.33332824707031" vgrow="SOMETIMES" />
-                      <RowConstraints fillHeight="false" maxHeight="181.0" minHeight="10.0" percentHeight="28.0" prefHeight="147.6666717529297" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="53.33332824707031" minHeight="0.0" percentHeight="10.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                        <RowConstraints fillHeight="false" maxHeight="30.333343505859375" minHeight="10.0" percentHeight="6.0" prefHeight="13.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="252.0" minHeight="10.0" percentHeight="46.0" prefHeight="252.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="11.0" prefWidth="530.0" styleClass="PassengerCustom" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="59.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/flights.PNG" />
-                                 </image>
-                              </ImageView>
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="PassengerVboxLabel">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Review" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Passenger's Itinerary" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <Label prefHeight="22.0" prefWidth="265.0" styleClass="TitleBackground" text="Flights" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                        <Label prefHeight="22.0" prefWidth="265.0" styleClass="TitleBackground" text="Passenger" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label prefHeight="22.0" prefWidth="265.0" styleClass="TitleBackground" text="Extras" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <GridPane styleClass="PaymentCustom" GridPane.rowIndex="4">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.33331298828125" minWidth="10.0" percentWidth="27.0" prefWidth="136.66668701171875" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.33331298828125" minWidth="10.0" percentWidth="73.0" prefWidth="218.33331298828125" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label styleClass="PaymentTitle1" text="Schedule:" />
-                              <Label styleClass="PaymentTitle1" text="(Date)" GridPane.columnIndex="1" />
-                              <Label styleClass="PaymentTitle1" text="00:00" GridPane.rowIndex="1" />
-                              <Label styleClass="PaymentTitle2" text="(Departure)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label styleClass="PaymentTitle1" text="00:00" GridPane.rowIndex="2" />
-                              <Label styleClass="PaymentTitle2" text="(Destination)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label styleClass="PaymentTitle2" text="Travel Time:" GridPane.rowIndex="3" />
-                              <Label styleClass="PaymentTitle1" text="(TravelTime)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label styleClass="PaymentTitle2" text="Ticket's ID: " GridPane.rowIndex="4" />
-                              <Label styleClass="PaymentTitle1" text="(id)" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                           </children>
-                        </GridPane>
-                        <ListView prefHeight="394.0" prefWidth="361.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <HBox prefHeight="11.0" prefWidth="530.0" styleClass="PassengerCustom" GridPane.columnSpan="2">
-                           <children>
-                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Wallet.PNG" />
-                                 </image>
-                              </ImageView>
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="PassengerVboxLabel">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Payment Detail" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="PassengerTitle" text="Methods" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <GridPane fx:id="cashShow" prefHeight="170.0" prefWidth="580.0" styleClass="PaymentMethod" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.33331298828125" minWidth="10.0" prefWidth="120.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.3333129882812" minWidth="10.0" prefWidth="441.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.3333129882812" minWidth="10.0" prefWidth="28.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label styleClass="BookingPrice" text="Cash" GridPane.rowIndex="1" />
-                              <Label layoutX="10.0" layoutY="16.0" prefHeight="43.0" prefWidth="198.0" text="Change" GridPane.rowIndex="3">
-                                 <styleClass>
-                                    <String fx:value="BookingPrice" />
-                                    <String fx:value="Change" />
-                                 </styleClass></Label>
-                              <Label layoutX="10.0" layoutY="69.0" styleClass="BookingPrice" text="Total" GridPane.rowIndex="2" />
-                              <Label prefHeight="66.0" prefWidth="519.0" text="000,000,000" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
-                                 <styleClass>
-                                    <String fx:value="BookingPrice" />
-                                    <String fx:value="Change" />
-                                 </styleClass></Label>
-                              <Label layoutX="226.0" layoutY="16.0" styleClass="BookingPrice" text="000,000,000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField prefHeight="14.0" prefWidth="193.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="closeCash" prefHeight="42.0" prefWidth="112.0" text="&lt;" textAlignment="RIGHT" GridPane.columnIndex="2" />
-                              <VBox prefHeight="31.0" prefWidth="526.0" styleClass="Note" GridPane.columnSpan="2">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter customer's cash!" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </GridPane>
-                        <GridPane prefHeight="170.0" prefWidth="317.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.3333282470703" minWidth="10.0" prefWidth="123.33331298828125" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="215.66668701171875" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <BorderPane fx:id="cashMethod" prefHeight="75.0" styleClass="PaymentMethodButton">
-                                 <right>
-                                    <Label prefHeight="84.0" prefWidth="9.0" styleClass="PaymentLabel" text="&gt;" BorderPane.alignment="CENTER" />
-                                 </right>
-                                 <center>
-                                    <ImageView fitHeight="54.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@images/cash-.png" />
-                                       </image>
-                                    </ImageView>
-                                 </center>
-                                 <left>
-                                    <Label fx:id="txtCash" text="Cash method is chosen!" BorderPane.alignment="CENTER" />
-                                 </left>
-                              </BorderPane>
-                              <BorderPane fx:id="cardMethod" prefHeight="75.0" styleClass="PaymentMethodButton" GridPane.rowIndex="1">
-                                 <right>
-                                    <Label prefHeight="114.0" prefWidth="6.0" styleClass="PaymentLabel" text="&gt;" BorderPane.alignment="CENTER" />
-                                 </right>
-                                 <center>
-                                    <ImageView fitHeight="119.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@images/credit-card-icon.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </center>
-                                 <left>
-                                    <Label fx:id="txtCredit" text="Card method is chosen!" BorderPane.alignment="CENTER" />
-                                 </left>
-                              </BorderPane>
-                           </children>
-                        </GridPane>
-                        <GridPane fx:id="cardShow" layoutX="438.0" layoutY="78.0" prefHeight="170.0" prefWidth="543.0" styleClass="PaymentMethod" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.33331298828125" minWidth="0.0" prefWidth="188.66668701171875" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.3333129882812" minWidth="10.0" prefWidth="368.6666259765625" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.3333129882812" minWidth="10.0" prefWidth="25.3333740234375" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label styleClass="BookingPrice" text="Transaction Code" GridPane.rowIndex="1" />
-                              <TextField prefHeight="14.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="closeCard" prefHeight="42.0" prefWidth="112.0" text="&lt;" textAlignment="RIGHT" GridPane.columnIndex="2" />
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To make sure you've  finished completely!" />
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="Note" />
-                                    <String fx:value="Change" />
-                                 </styleClass></VBox>
-                              <Label styleClass="BookingPrice" text="Total" />
-                              <Label styleClass="BookingPrice" text="000,000,000" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
-                        <VBox prefHeight="200.0" prefWidth="373.0" styleClass="PaymentTime" GridPane.rowIndex="1">
-                           <children>
-                              <HBox prefHeight="75.0">
-                                 <children>
-                                    <CheckBox fx:id="payIma" mnemonicParsing="false" text="PAY IMMEDIATELY" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="75.0">
-                                 <children>
-                                    <CheckBox fx:id="payLater" mnemonicParsing="false" text="REVERSATION" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </GridPane>
-               </content></Tab>
          </tabs>
       </TabPane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -792,7 +431,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnFinish" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Finish">
+            <Button fx:id="btnFinish" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnFinishHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Finish">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1365.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aabairline.FXMLBookingController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1126.3333129882812" minWidth="10.0" prefWidth="359.33331298828125" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1110.6666717529297" minWidth="10.0" prefWidth="1005.6666870117188" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="92.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#exitBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Exit">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Back">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/airplane_back-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnNext" contentDisplay="RIGHT" layoutX="528.0" layoutY="15.0" mnemonicParsing="false" onAction="#nextBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Next ">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/airplane_2-next-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnFinish" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnFinishHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Finish">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/login.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <styleClass>
+            <String fx:value="BookingCustom" />
+            <String fx:value="HboxNextBtn" />
+         </styleClass>
+      </HBox>
+   </children>
+</GridPane>

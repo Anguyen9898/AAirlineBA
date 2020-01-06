@@ -31,29 +31,39 @@ public class Customer implements Serializable {
     private Date dayOfBirth;
     @Column(name = "C_ADDRESS", length = 50, nullable = true)
     private String address;
+    @Column(name = "C_EMAIL", length = 50, nullable = true)
+    private String email;
+    
+    @Column(name = "C_GENDER", length = 50, nullable = true)
+    private String gender;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_COUNTRY", updatable = false, insertable = false)
+    @JoinColumn(name = "C_COUNTRY", updatable = true, insertable = true)
     private Country country;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "C_NATIONALITY", updatable = false, insertable = false)
-    private Country nationality;
-
+    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cId")
+//    private List<Ticket> tickets;
+//    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookerId")
+//    private List<Ticket> bookers;
+    
     public Customer() {
+        
     }
 
-    public Customer(String id, String name, String idNum, String phone, Date dayOfBirth
-            , String address, Country country, Country nationality) {
+    public Customer(String id, String name, String idNum, String phone
+            , Date dayOfBirth, String address, String email
+            , String gender, Country country) {
         this.id = id;
         this.name = name;
         this.idNum = idNum;
         this.phone = phone;
         this.dayOfBirth = dayOfBirth;
         this.address = address;
-//        this.country = country;
-//        this.nationality = nationality;
+        this.email = email;
+        this.gender = gender;
+        this.country = country;
     }
-
     public String getId() {
         return id;
     }
@@ -102,19 +112,45 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-//    public Country getCountry() {
-//        return country;
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+//    public List<Ticket> getTickets() {
+//        return tickets;
 //    }
 //
-//    public void setCountry(Country country) {
-//        this.country = country;
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
 //    }
 //
-//    public Country getNationality() {
-//        return nationality;
+//    public List<Ticket> getBookers() {
+//        return bookers;
 //    }
 //
-//    public void setNationality(Country nationality) {
-//        this.nationality = nationality;
+//    public void setBookers(List<Ticket> bookers) {
+//        this.bookers = bookers;
 //    }
+    
+    
 }

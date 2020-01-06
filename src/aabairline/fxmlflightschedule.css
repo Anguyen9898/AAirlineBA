@@ -1,0 +1,28 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+TableView > *{
+    -fx-alignment: center;
+}
+.Vbox {
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #00d4ff, #080849);
+    -fx-padding: 5;
+    -fx-spacing: 10;
+}
+.Gridpane{
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-font-size: 16px;
+    -fx-text-fill: darkblue;
+}
+.lb{
+    -fx-text-fill: darkblue;
+    -fx-background-color: whitesmoke;
+    -fx-font-size: 16px;
+}
+.TextField{
+    -fx-font-size: 16px;
+    -fx-text-fill: darkblue;
+}
+

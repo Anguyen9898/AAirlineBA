@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1365.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aabairline.FXMLFlyingController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1126.3333129882812" minWidth="10.0" prefWidth="359.33331298828125" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1110.6666717529297" minWidth="10.0" prefWidth="1005.6666870117188" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="92.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#exitBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Exit">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#insertBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Insert">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/airplane_back-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="RIGHT" layoutX="528.0" layoutY="15.0" mnemonicParsing="false" onAction="#updateBtnHandler" prefHeight="49.0" prefWidth="130.0" styleClass="BookingBtn" text="Update">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/airplane_2-next-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <styleClass>
+            <String fx:value="BookingCustom" />
+            <String fx:value="HboxNextBtn" />
+         </styleClass>
+      </HBox>
+      <TabPane fx:id="tb" GridPane.columnSpan="2">
+         <tabs>
+            <Tab closable="false" text="INSERT NEW FLIGHT DETAIL">
+               <content>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1357.0" styleClass="Vbox" stylesheets="@fxmlflightschedule.css">
+                     <children>
+                        <GridPane prefHeight="144.0" prefWidth="1337.0" styleClass="Gridpane" stylesheets="@fxmlflightschedule.css">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label GridPane.rowIndex="1" />
+                              <Label />
+                              <Label text="Attendant 1" GridPane.rowIndex="1" />
+                              <Label text="Attendant 3" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label text="Plane ID" GridPane.rowIndex="2" />
+                              <Label text="Side Pilot" GridPane.columnIndex="4" />
+                              <Label text="Attendant 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbIdIn" prefHeight="149.0" prefWidth="595.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cbMainIn" prefHeight="135.0" prefWidth="628.0" GridPane.columnIndex="3" />
+                              <ComboBox fx:id="cbSideIn" prefHeight="83.0" prefWidth="784.0" GridPane.columnIndex="5" />
+                              <ComboBox fx:id="cbAT1In" prefHeight="129.0" prefWidth="594.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbAT2In" prefHeight="77.0" prefWidth="584.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbAT3In" prefHeight="69.0" prefWidth="460.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbPlaneIn" prefHeight="45.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Flight ID" />
+                              <Label text="Main Pilot" GridPane.columnIndex="2" />
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#finishBtnHanlder" prefHeight="47.0" prefWidth="773.0" styleClass="BookingBtn" text="Finish" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                 <graphic>
+                                    <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/login.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label prefHeight="4.0" prefWidth="319.0" styleClass="lb" text="Flight that've not had detail yet" />
+                              <TableView fx:id="tbFlightsIn" prefHeight="565.0" prefWidth="1271.0">
+                                 <columns>
+                                    <TableColumn prefWidth="84.66666412353516" text="Flight ID" />
+                                    <TableColumn prefWidth="202.33333587646484" text="TakeOff Date" />
+                                    <TableColumn prefWidth="190.6666717529297" text="TakeOff Time" />
+                                    <TableColumn prefWidth="216.0" text="Arrival Date" />
+                                    <TableColumn prefWidth="277.0" text="Arrival Time" />
+                                    <TableColumn prefWidth="212.6666259765625" text="Route" />
+                                    <TableColumn prefWidth="161.3333740234375" text="Price" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <TableView fx:id="tbFlyingsIn" layoutX="20.0" layoutY="174.0" prefHeight="265.0" prefWidth="1347.0" stylesheets="@fxmlflightschedule.css">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Flight ID" />
+                              <TableColumn prefWidth="212.0" text="Main Pilot ID" />
+                              <TableColumn minWidth="0.0" prefWidth="216.0" text="Side Pilot" />
+                              <TableColumn prefWidth="213.0" text="Attendant1" />
+                              <TableColumn prefWidth="257.0" text="Attendan2 " />
+                              <TableColumn prefWidth="274.0" text="Attendant3" />
+                              <TableColumn prefWidth="89.0" text="Plane ID" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab closable="false" text="FIX OLD FLIGHT DETAIL">
+               <content>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1357.0" styleClass="Vbox" stylesheets="@fxmlflightschedule.css">
+                     <children>
+                        <GridPane prefHeight="144.0" prefWidth="1337.0" styleClass="Gridpane" stylesheets="@fxmlflightschedule.css">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="23.3" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label GridPane.rowIndex="1" />
+                              <Label />
+                              <Label text="Attendant 1" GridPane.rowIndex="1" />
+                              <Label text="Attendant 3" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label text="Plane ID" GridPane.rowIndex="2" />
+                              <Label text="Side Pilot" GridPane.columnIndex="4" />
+                              <Label text="Attendant 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbIdIn2" prefHeight="149.0" prefWidth="595.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cbMainIn2" prefHeight="135.0" prefWidth="628.0" GridPane.columnIndex="3" />
+                              <ComboBox fx:id="cbSideIn2" prefHeight="83.0" prefWidth="784.0" GridPane.columnIndex="5" />
+                              <ComboBox fx:id="cbAT1In2" prefHeight="129.0" prefWidth="594.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbAT2In2" prefHeight="77.0" prefWidth="584.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbAT3In2" prefHeight="69.0" prefWidth="460.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbPlaneIn2" prefHeight="45.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Flight ID" />
+                              <Label text="Main Pilot" GridPane.columnIndex="2" />
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#finishBtnHanlder" prefHeight="47.0" prefWidth="773.0" styleClass="BookingBtn" text="Finish" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                 <graphic>
+                                    <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/login.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <TableView fx:id="tbFlyingsUp" prefHeight="500.0" prefWidth="1337.0" stylesheets="@fxmlflightschedule.css">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Flight ID" />
+                              <TableColumn prefWidth="212.0" text="Main Pilot ID" />
+                              <TableColumn minWidth="0.0" prefWidth="216.0" text="Side Pilot" />
+                              <TableColumn prefWidth="213.0" text="Attendant1" />
+                              <TableColumn prefWidth="257.0" text="Attendan2 " />
+                              <TableColumn prefWidth="274.0" text="Attendant3" />
+                              <TableColumn prefWidth="89.0" text="Plane ID" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+   <stylesheets>
+      <URL value="@fxmlflightschedule.css" />
+      <URL value="@style.css" />
+   </stylesheets>
+</GridPane>

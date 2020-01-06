@@ -8,6 +8,7 @@ package aabairline.pojo;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -42,8 +43,19 @@ public class FlightInfo implements Serializable {
     @JoinColumn(name = "F_ROUTE")
     private Route route;
     
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fId")
+    private List<Ticket> tickets;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "flightId")
+    private List<Flying> flyings;
+
+    @Override
+    public String toString() {
+        return id + " " + route.toString();
+    }
     
     public FlightInfo() {
+        
     }
 
     public FlightInfo(String id, Date takeOfDate, Time takeOfTime, Date arrivalDate, Time arrivalTime, double price, Route route) {
@@ -113,5 +125,22 @@ public class FlightInfo implements Serializable {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public List<Flying> getFlyings() {
+        return flyings;
+    }
+
+    public void setFlyings(List<Flying> flyings) {
+        this.flyings = flyings;
+    }
+    
     
 }

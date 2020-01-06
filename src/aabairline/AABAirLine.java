@@ -21,12 +21,13 @@ public class AABAirLine extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLBooking.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getIcons().add(new Image(getClass().getResource("images/MainLogo.png").toString()));
+        stage.getIcons().add(new Image(getClass().getResource("images/MainLogo.png")
+                .toString()));
         //stage.setFullScreen(true);
         stage.show();
     }

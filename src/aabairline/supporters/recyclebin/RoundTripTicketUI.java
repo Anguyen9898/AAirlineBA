@@ -6,7 +6,7 @@
 package aabairline.supporters.recyclebin;
 
 import aabairline.supporters.recyclebin.OnewayTicketUI;
-import aabairline.supporters.SupporterImp.ModifledNode;
+import aabairline.supporters.SupporterImp.ModifiedNode;
 import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXMLLoader;
