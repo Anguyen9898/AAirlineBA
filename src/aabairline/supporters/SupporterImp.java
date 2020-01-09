@@ -201,7 +201,7 @@ public interface SupporterImp{
             return String.format("%s%05d", "cus", (Utils.countCustomer()+ 1));
         }
         
-         public static String newTicket(){
+        public static String newTicket(){
             return String.format("%s%05d", "tik", (Utils.countCustomer()+ 1));
         }
     }

@@ -37,8 +37,8 @@ public class TicketingAgent implements Serializable{
     @Column(name = "TA_PASSWORD", length = 50, nullable = true)
     private String ta_Password;
     
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "taId")
-//    private List<Ticket> tickets;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "taId")
+    private List<Ticket> tickets;
 
 //    @Override
 //    public String toString() {
@@ -135,14 +135,14 @@ public class TicketingAgent implements Serializable{
     }
     
 
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
-//    
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+    
 
     public String getGender() {
         return gender;

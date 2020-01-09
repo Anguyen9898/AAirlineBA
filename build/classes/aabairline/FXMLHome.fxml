@@ -47,11 +47,11 @@
             </HBox>
             <HBox prefHeight="218.0" prefWidth="389.0" styleClass="HBoxHome" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#flightDetailBtnHandler" prefHeight="262.0" prefWidth="380.0" styleClass="Button" text="Flights Detail">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#bookingBtnHandler" prefHeight="262.0" prefWidth="380.0" text="Booking">
                      <graphic>
                         <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/0d2af7d0e45d8c095cf44faf4ab63335.png" />
+                              <Image url="@images/ticket-book.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -73,11 +73,11 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="HBoxHome" GridPane.rowIndex="1">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#bookingBtnHandler" prefHeight="262.0" prefWidth="380.0" text="Booking">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#flightDetailBtnHandler" prefHeight="262.0" prefWidth="380.0" styleClass="Button" text="Flights Detail">
                      <graphic>
                         <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/ticket-book.png" />
+                              <Image url="@images/0d2af7d0e45d8c095cf44faf4ab63335.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -122,7 +122,7 @@
             </Button>
          </children>
       </GridPane>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="CenterTitle" GridPane.rowIndex="1">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="CenterTitle" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright " textAlignment="RIGHT" wrappingWidth="73.32421875">
                <font>

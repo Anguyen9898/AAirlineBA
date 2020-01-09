@@ -24,13 +24,16 @@ import javax.persistence.Temporal;
 @Table(name = "ticket")
 public class Ticket implements Serializable {
     @Id
+    @Column(name = "TicketId")
+    private String id;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "C_ID")
-    private Customer cId;
+    private Customer cusId;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "F_ID")
-    private FlightInfo fId;
+    private FlightInfo flightId;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "TA_ID")
@@ -46,10 +49,6 @@ public class Ticket implements Serializable {
     @Column(name = "IS_ROUNDTRIP", length = 50, nullable = true)
     private boolean isRoundTrip;
     
-//    @Column(name = "SEAT_ID", length = 50, nullable = true)
-//    @Temporal(TemporalType.DATE)
-//    private String seatId;
-    
     @Column(name = "PRICE", length = 50, nullable = true)
     private double price;
     
@@ -60,37 +59,38 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
-    
-    public Ticket(Customer cId, FlightInfo fId, TicketingAgent taId
-            , Date depDate, String bookingTime, boolean isRoundTrip
-            , double price, Customer bookerId) {
-        this.cId = cId;
-        this.fId = fId;
+    public Ticket(String id, Customer cusId, FlightInfo flightId, TicketingAgent taId, Date depDate, String bookingTime, boolean isRoundTrip, double price, Customer bookerId) {
+        this.id = id;
+        this.cusId = cusId;
+        this.flightId = flightId;
         this.taId = taId;
         this.depDate = depDate;
         this.bookingTime = bookingTime;
         this.isRoundTrip = isRoundTrip;
-        //this.seatId = seatId;
         this.price = price;
         this.bookerId = bookerId;
     }
 
-    public Customer getcId() {
-        return cId;
+    
+
+    public Customer getCusId() {
+        return cusId;
     }
 
-    public void setcId(Customer cId) {
-        this.cId = cId;
+    public void setCusId(Customer cusId) {
+        this.cusId = cusId;
     }
 
-    public FlightInfo getfId() {
-        return fId;
+    
+    public FlightInfo getFlightId() {
+        return flightId;
     }
 
-    public void setfId(FlightInfo fId) {
-        this.fId = fId;
+    public void setFlightId(FlightInfo flightId) {
+        this.flightId = flightId;
     }
 
+    
     public TicketingAgent getTaId() {
         return taId;
     }
@@ -122,15 +122,7 @@ public class Ticket implements Serializable {
     public void setIsRoundTrip(boolean isRoundTrip) {
         this.isRoundTrip = isRoundTrip;
     }
-
-//    public String getSeatId() {
-//        return seatId;
-//    }
-//
-//    public void setSeatId(String seatId) {
-//        this.seatId = seatId;
-//    }
-
+    
     public double getPrice() {
         return price;
     }
@@ -145,6 +137,14 @@ public class Ticket implements Serializable {
 
     public void setBookerId(Customer bookerId) {
         this.bookerId = bookerId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
     

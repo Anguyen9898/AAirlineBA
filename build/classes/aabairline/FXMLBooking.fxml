@@ -198,7 +198,7 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab disable="true" text="Passenger Detail">
+            <Tab text="Passenger Detail">
                <content>
                   <GridPane styleClass="BookingPattern">
                      <columnConstraints>
@@ -364,13 +364,7 @@
                                                 <VBox prefHeight="95.0" prefWidth="706.0" styleClass="PassengerBoxesFiled">
                                                    <children>
                                                       <Label prefHeight="20.0" prefWidth="102.0" styleClass="TitleBackground" text="Country (*)" />
-                                                      <ComboBox fx:id="nationality" prefHeight="45.0" prefWidth="600.0" promptText="Select Country" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="10.0" prefWidth="589.0" styleClass="PassengerBoxesFiled">
-                                                   <children>
-                                                      <Label prefHeight="20.0" prefWidth="121.0" styleClass="TitleBackground" text="Accompanied by" />
-                                                      <ComboBox fx:id="cbAccom" prefHeight="45.0" prefWidth="255.0" />
+                                                      <ComboBox fx:id="nationality" prefHeight="45.0" prefWidth="514.0" promptText="Select Country" />
                                                    </children>
                                                 </VBox>
                                              </children>

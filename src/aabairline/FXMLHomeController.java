@@ -5,6 +5,7 @@
  */
 package aabairline;
 
+import aabairline.pojo.TicketingAgent;
 import aabairline.supporters.SupporterImp.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -46,11 +47,13 @@ public class FXMLHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupUserInfo();
+        
     }    
     
     public void bookingBtnHandler(ActionEvent event) throws IOException{
         ModifiedNode.openChidrenWindow("FXMLBooking.fxml", "images/ticket-book.png"
-                , event);     
+                , event);
+        
     }
     
     public void flightEditorBtnHandler(ActionEvent event) throws IOException{

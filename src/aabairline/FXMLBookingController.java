@@ -242,9 +242,10 @@ public class FXMLBookingController implements Initializable{
     public void nextTab() throws URISyntaxException{
         int i = BookingTab.getSelectionModel().getSelectedIndex();
           //next tab
-        if(i < 1)BookingTab.getSelectionModel().select(BookingTab.getTabs().get(i + 1));
-        
-        
+        if(i < 1){
+            BookingTab.getSelectionModel().select(BookingTab.getTabs().get(i + 1));
+            
+        }
     }
     public int getAdultCount(){
         return cbAdult.getSelectionModel().getSelectedItem();
@@ -271,41 +272,26 @@ public class FXMLBookingController implements Initializable{
     }
     
     public void btnFinishHandler(ActionEvent event) throws URISyntaxException{
-       
-          //save or update customer
-        ModifiedNode.myAlert(Alert.AlertType.CONFIRMATION
-                , "Save Ticket", "Are you sure save or update this customer", ""
+        PassengerDetail.setIfOldCustomer(cbCusId.getSelectionModel()
+                .getSelectedItem());  
+        //save or update ticket
+         ModifiedNode.myAlert(Alert.AlertType.CONFIRMATION
+                , "Save Ticket", "Are you sure to finish booking", ""
                 , "images/login.png")
                 .showAndWait()
                 .ifPresent(rep ->{
                     if(rep == ButtonType.OK){
-                        if(Utils.addOrUpdateCustomer(getCustomer())){
+                        if(Utils.addOrUpdateTicket(getTicket())
+                                && Utils.addOrUpdateCustomer(getCustomer())){
                             new Alert(Alert.AlertType.INFORMATION
                                     , "Add or Update Sucessfull").show();
-                          
                         }else{
-                             new Alert(Alert.AlertType.INFORMATION
+                            new Alert(Alert.AlertType.INFORMATION
                                     , "Add or Update Failed").show();
                         }
                     }
                 });
         
-         //save or update ticket
-         ModifiedNode.myAlert(Alert.AlertType.CONFIRMATION
-                , "Save Ticket", "Are you sure save or update this ticket", ""
-                , "images/login.png")
-                .showAndWait()
-                .ifPresent(rep ->{
-                    if(rep == ButtonType.OK){
-                        if(Utils.addOrUpdateTicket(getTicket())){
-                            new Alert(Alert.AlertType.INFORMATION
-                                    , "Add or Update Sucessfull").show();
-                        }else{
-                             new Alert(Alert.AlertType.INFORMATION
-                                    , "Add or Update Failed").show();
-                        }
-                    }
-                });
          
     }
     
@@ -339,15 +325,15 @@ public class FXMLBookingController implements Initializable{
     }
     
     public Ticket getTicket(){
-        return new Ticket(
-                PassengerDetail.newCus
+        return new Ticket(CreateID.newTicket(),
+                getCustomer()
                 , FlightSearch.selectedFlight
-                , new TicketingAgent()
+                , FXMLLoginController.currentUser
                 , FlightSearch.selectedFlight.getTakeOfDate()
                 , LocalDate.now().toString()
                 , false
                 , FlightSearch.selectedFlight.getPrice()
-                , PassengerDetail.newCus);
+                , getCustomer());
     }
     
     //    public void tabPassengerAmout() throws IOException{

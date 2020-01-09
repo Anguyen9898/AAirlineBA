@@ -43,7 +43,7 @@ public class FlightInfo implements Serializable {
     @JoinColumn(name = "F_ROUTE")
     private Route route;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "flightId")
     private List<Ticket> tickets;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "flightId")

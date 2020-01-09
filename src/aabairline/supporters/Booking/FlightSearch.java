@@ -212,6 +212,9 @@ public class FlightSearch{
         depDate.setValue(MyDate.getCurrentDate());
         reDate.setValue(depDate.getValue());
         
+        MyDate.disablePastDate(depDate);
+        MyDate.disablePastDate(reDate);
+        
         reDate.valueProperty().addListener(((observable, oldValue, newValue) -> {
             if(newValue.compareTo(depDate.getValue()) < 0){
                 try {

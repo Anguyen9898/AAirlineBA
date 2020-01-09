@@ -41,11 +41,11 @@ public class Customer implements Serializable {
     @JoinColumn(name = "C_COUNTRY", updatable = true, insertable = true)
     private Country country;
     
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cId")
-//    private List<Ticket> tickets;
-//    
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookerId")
-//    private List<Ticket> bookers;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cusId")
+    private List<Ticket> tickets;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookerId")
+    private List<Ticket> bookers;
     
     public Customer() {
         
@@ -136,21 +136,21 @@ public class Customer implements Serializable {
         this.gender = gender;
     }
 
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
-//
-//    public List<Ticket> getBookers() {
-//        return bookers;
-//    }
-//
-//    public void setBookers(List<Ticket> bookers) {
-//        this.bookers = bookers;
-//    }
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public List<Ticket> getBookers() {
+        return bookers;
+    }
+
+    public void setBookers(List<Ticket> bookers) {
+        this.bookers = bookers;
+    }
     
     
 }

@@ -14,6 +14,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -50,7 +51,7 @@ public class PassengerDetail {
     public static int childrenCount;
     public static int infantCount;
     
-    public static Customer newCus;
+    public static Customer newCus = null;
     
 //    public PassengerDetail(){
 //        
@@ -87,8 +88,6 @@ public class PassengerDetail {
     }
 
     public static void init() {
-        
-        
         dateOfBirth.setConverter(MyDate.setDateFormat());
         dateOfBirth.setValue(LocalDate.of(1960, Month.JANUARY, 1));
         
@@ -113,6 +112,15 @@ public class PassengerDetail {
         cbCusId.getItems().add(strId);
         cbCusId.getSelectionModel().select(strId);
         
+        ((CheckBox)passengerTab.getTabs().get(0).getGraphic())
+                .selectedProperty().addListener(listener ->{
+                    if(!((CheckBox)passengerTab.getTabs().get(0)
+                            .getGraphic()).isSelected()){
+                        cbCusId.getSelectionModel().select(strId);
+                        setIfOldCustomer("");
+                    }
+                });
+        
         Utils.getCustomer().forEach(item ->{
             cbCusId.getItems().add(item.getId());
         });
@@ -133,7 +141,7 @@ public class PassengerDetail {
     }
     
     public static void setIfOldCustomer(String id){
-        if(Utils.getCustomerById(id).get(0) != null){
+        if(!Utils.getCustomerById(id).isEmpty()){
             txtPassFMName.setText(Utils.getCustomerById(id).get(0).getName());
             txtAdress.setText(Utils.getCustomerById(id).get(0).getAddress());
             txtEmail.setText(Utils.getCustomerById(id).get(0).getEmail());
